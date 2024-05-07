@@ -1,0 +1,1094 @@
+{
+  "exercises": [
+    {
+      "name": "Air Squats",
+      "description": "A basic squat without weights to engage the legs and glutes.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Bend your knees and lower into a squat.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Legs", "Glutes"]
+    },
+    {
+      "name": "Arm Circles",
+      "description": "A simple exercise to warm up the shoulders and arms.",
+      "steps": [
+        "Extend your arms out to the sides.",
+        "Make small circles with your arms.",
+        "Gradually increase the circle size."
+      ],
+      "muscleGroups": ["Shoulders", "Arms"]
+    },
+    {
+      "name": "Arnold Press",
+      "description": "A shoulder press exercise involving rotation.",
+      "steps": [
+        "Hold dumbbells at shoulder height, palms facing you.",
+        "Press the dumbbells upward while rotating your wrists.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Shoulders", "Arms"]
+    },
+    {
+      "name": "Alternating Lunges",
+      "description": "A lower-body exercise that alternates lunging with each leg.",
+      "steps": [
+        "Stand with feet hip-width apart.",
+        "Step forward with one leg and lower into a lunge.",
+        "Return to the starting position and switch legs."
+      ],
+      "muscleGroups": ["Legs", "Glutes"]
+    },
+    {
+      "name": "Abdominal Crunch",
+      "description": "A core exercise to strengthen the abdominal muscles.",
+      "steps": [
+        "Lie on your back with knees bent.",
+        "Lift your shoulders off the ground towards your knees.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Core"]
+    },
+    {
+      "name": "Burpees",
+      "description": "A high-intensity full-body exercise.",
+      "steps": [
+        "Start in a standing position.",
+        "Drop into a squat, then jump into a plank.",
+        "Perform a push-up, then return to a standing position with a jump."
+      ],
+      "muscleGroups": ["Full Body"]
+    },
+    {
+      "name": "Bicep Curls",
+      "description": "An exercise to strengthen the biceps.",
+      "steps": [
+        "Hold dumbbells at your sides.",
+        "Curl the dumbbells towards your shoulders.",
+        "Lower them back down."
+      ],
+      "muscleGroups": ["Arms"]
+    },
+    {
+      "name": "Bent-over Rows",
+      "description": "A back exercise involving pulling weights towards your chest.",
+      "steps": [
+        "Bend forward at the hips while holding weights.",
+        "Pull the weights towards your chest.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Back", "Arms"]
+    },
+    {
+      "name": "Box Jumps",
+      "description": "A plyometric exercise involving jumping onto a box.",
+      "steps": [
+        "Stand in front of a box or platform.",
+        "Jump onto the box with both feet.",
+        "Step down and repeat."
+      ],
+      "muscleGroups": ["Legs"]
+    },
+    {
+      "name": "Bench Press",
+      "description": "A classic exercise for the chest and triceps.",
+      "steps": [
+        "Lie on a bench with a barbell above you.",
+        "Lower the barbell to your chest.",
+        "Push it back up to the starting position."
+      ],
+      "muscleGroups": ["Chest", "Triceps"]
+    },
+    {
+      "name": "Crunches",
+      "description": "A core exercise to strengthen the abdominal muscles.",
+      "steps": [
+        "Lie on your back with knees bent.",
+        "Lift your shoulders towards your knees.",
+        "Lower back down."
+      ],
+      "muscleGroups": ["Core"]
+    },
+    {
+      "name": "Calf Raises",
+      "description": "An exercise to strengthen the calf muscles.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Raise your heels to stand on your toes.",
+        "Lower back down."
+      ],
+      "muscleGroups": ["Legs", "Calves"]
+    },
+    {
+      "name": "Chest Flyes",
+      "description": "A chest exercise involving opening and closing the arms with weights.",
+      "steps": [
+        "Lie on a bench with dumbbells in each hand.",
+        "Open your arms outward, then bring them back together.",
+        "Repeat."
+      ],
+      "muscleGroups": ["Chest"]
+    },
+    {
+      "name": "Chin-Ups",
+      "description": "An upper body exercise where you pull yourself up to a bar.",
+      "steps": [
+        "Grab a pull-up bar with palms facing you.",
+        "Pull yourself up until your chin is above the bar.",
+        "Lower back down."
+      ],
+      "muscleGroups": ["Back", "Arms"]
+    },
+    {
+      "name": "Crossbody Mountain Climbers",
+      "description": "A high-intensity exercise involving alternating leg movements in a plank position.",
+      "steps": [
+        "Start in a plank position.",
+        "Bring one knee towards the opposite elbow.",
+        "Switch to the other leg."
+      ],
+      "muscleGroups": ["Core", "Legs"]
+    },
+    {
+      "name": "Dips",
+      "description": "An upper body exercise involving lowering and raising the body using parallel bars.",
+      "steps": [
+        "Hold onto parallel bars with arms straight.",
+        "Lower yourself down by bending your elbows.",
+        "Push back up to the starting position."
+      ],
+      "muscleGroups": ["Triceps", "Chest"]
+    },
+    {
+      "name": "Deadlifts",
+      "description": "A compound exercise involving lifting weights from the ground.",
+      "steps": [
+        "Stand with feet hip-width apart.",
+        "Bend down to grab the barbell.",
+        "Lift it up while keeping your back straight."
+      ],
+      "muscleGroups": ["Back", "Legs"]
+    },
+    {
+      "name": "Decline Push-Ups",
+      "description": "A push-up variation with feet raised higher than the hands.",
+      "steps": [
+        "Place your feet on a bench or platform.",
+        "Perform a push-up as usual.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Chest", "Shoulders"]
+    },
+    {
+      "name": "Dumbbell Shoulder Press",
+      "description": "An upper body exercise with dumbbells targeting the shoulders.",
+      "steps": [
+        "Hold dumbbells at shoulder height.",
+        "Press them upward.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Shoulders"]
+    },
+    {
+      "name": "Dragon Flags",
+      "description": "An advanced core exercise involving lifting the legs while maintaining a straight body.",
+      "steps": [
+        "Lie on a bench and grab the bench behind your head.",
+        "Raise your legs while keeping your body straight.",
+        "Lower your body slowly."
+      ],
+      "muscleGroups": ["Core"]
+    },
+    {
+      "name": "Elevated Planks",
+      "description": "A plank variation with raised feet for additional challenge.",
+      "steps": [
+        "Start in a plank position with feet raised.",
+        "Hold the position for a set time.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Core", "Shoulders"]
+    },
+    {
+      "name": "Elbow Plank",
+      "description": "A plank variation done on the elbows.",
+      "steps": [
+        "Start in a plank position on your elbows.",
+        "Hold the position for a set time.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Core", "Shoulders"]
+    },
+    {
+      "name": "EZ Bar Curls",
+      "description": "An exercise targeting the biceps with an EZ bar.",
+      "steps": [
+        "Hold an EZ bar with an underhand grip.",
+        "Curl it towards your shoulders.",
+        "Lower it back down."
+      ],
+      "muscleGroups": ["Arms", "Biceps"]
+    },
+    {
+      "name": "Farmers Walk",
+      "description": "An exercise involving walking while carrying heavy weights.",
+      "steps": [
+        "Hold heavy dumbbells in each hand.",
+        "Walk a set distance or time.",
+        "Rest and repeat."
+      ],
+      "muscleGroups": ["Full Body"]
+    },
+    {
+      "name": "Face Pulls",
+      "description": "An upper body exercise involving pulling a cable towards your face.",
+      "steps": [
+        "Attach a rope to a cable machine at head height.",
+        "Pull the rope towards your face.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Shoulders", "Back"]
+    },
+    {
+      "name": "Front Raises",
+      "description": "An upper body exercise with dumbbells, raising them in front of you.",
+      "steps": [
+        "Hold dumbbells in each hand.",
+        "Raise them straight in front of you.",
+        "Lower them back down."
+      ],
+      "muscleGroups": ["Shoulders"]
+    },
+    {
+      "name": "Forward Lunges",
+      "description": "A lower body exercise involving lunging forward with one leg.",
+      "steps": [
+        "Stand with feet hip-width apart.",
+        "Step forward with one leg and lower into a lunge.",
+        "Return to the starting position and switch legs."
+      ],
+      "muscleGroups": ["Legs", "Glutes"]
+    },
+    {
+      "name": "Floor Press",
+      "description": "A chest exercise where you press weights while lying on the floor.",
+      "steps": [
+        "Lie on your back on the floor with dumbbells.",
+        "Press the dumbbells upwards.",
+        "Lower them back down."
+      ],
+      "muscleGroups": ["Chest", "Triceps"]
+    },
+    {
+      "name": "Glute Bridges",
+      "description": "A lower body exercise that targets the glutes and hamstrings.",
+      "steps": [
+        "Lie on your back with knees bent.",
+        "Lift your hips towards the ceiling.",
+        "Lower them back down."
+      ],
+      "muscleGroups": ["Glutes", "Hamstrings"]
+    },
+    {
+      "name": "Goblet Squats",
+      "description": "A squat variation where you hold a weight in front of you.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Hold a dumbbell or kettlebell at chest height.",
+        "Lower into a squat and return to the starting position."
+      ],
+      "muscleGroups": ["Legs", "Core"]
+    },
+    {
+      "name": "Good Mornings",
+      "description": "A lower body exercise involving bending at the hips.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Bend at the hips while keeping your back straight.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Lower Back", "Hamstrings"]
+    },
+    {
+      "name": "Hammer Curls",
+      "description": "An arm exercise where you curl weights with a neutral grip.",
+      "steps": [
+        "Hold dumbbells with a neutral grip.",
+        "Curl them towards your shoulders.",
+        "Lower them back down."
+      ],
+      "muscleGroups": ["Biceps", "Forearms"]
+    },
+    {
+      "name": "Hip Thrusts",
+      "description": "An exercise targeting the glutes by thrusting the hips upward.",
+      "steps": [
+        "Sit with your back against a bench and knees bent.",
+        "Place a barbell across your hips.",
+        "Thrust your hips upwards, then lower back down."
+      ],
+      "muscleGroups": ["Glutes", "Hamstrings"]
+    },
+    {
+      "name": "High Knees",
+      "description": "A cardio exercise where you bring your knees high while running in place.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Run in place while bringing your knees up.",
+        "Maintain a high tempo."
+      ],
+      "muscleGroups": ["Legs", "Core"]
+    },
+    {
+      "name": "Inchworms",
+      "description": "A full-body exercise involving bending and walking out into a plank.",
+      "steps": [
+        "Stand and bend at the waist.",
+        "Walk your hands forward into a plank position.",
+        "Walk your feet towards your hands and return to standing."
+      ],
+      "muscleGroups": ["Full Body"]
+    },
+    {
+      "name": "Incline Bench Press",
+      "description": "A bench press variation on an incline bench.",
+      "steps": [
+        "Set a bench to an incline position.",
+        "Hold a barbell or dumbbells at shoulder height.",
+        "Press the weights upwards and return to the starting position."
+      ],
+      "muscleGroups": ["Chest", "Shoulders"]
+    },
+    {
+      "name": "Isometric Holds",
+      "description": "An exercise involving holding a static position for a set time.",
+      "steps": [
+        "Assume a specific position (like a plank or squat hold).",
+        "Hold the position for a set duration.",
+        "Release and rest."
+      ],
+      "muscleGroups": ["Various"]
+    },
+    {
+      "name": "Jackknives",
+      "description": "A core exercise involving raising both legs and upper body.",
+      "steps": [
+        "Lie on your back with legs extended.",
+        "Lift your legs and upper body to meet in the middle.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Core"]
+    },
+    {
+      "name": "Jumping Jacks",
+      "description": "A cardio exercise involving jumping and spreading your arms and legs.",
+      "steps": [
+        "Start with feet together and arms by your sides.",
+        "Jump while spreading your arms and legs.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Legs", "Arms"]
+    },
+    {
+      "name": "Jump Squats",
+      "description": "A squat variation involving jumping at the top of the squat.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Lower into a squat, then jump up.",
+        "Land softly and repeat."
+      ],
+      "muscleGroups": ["Legs", "Glutes"]
+    },
+    {
+      "name": "Kettlebell Swings",
+      "description": "An exercise involving swinging a kettlebell in front of you.",
+      "steps": [
+        "Hold a kettlebell with both hands.",
+        "Swing it forward while keeping your back straight.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Legs", "Core"]
+    },
+    {
+      "name": "Knee Push-Ups",
+      "description": "A modified push-up where you perform it on your knees.",
+      "steps": [
+        "Start in a push-up position on your knees.",
+        "Lower your chest to the ground.",
+        "Push back up to the starting position."
+      ],
+      "muscleGroups": ["Chest", "Arms"]
+    },
+    {
+      "name": "Kettlebell Deadlifts",
+      "description": "A deadlift variation using kettlebells.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Hold a kettlebell between your legs.",
+        "Lift it by straightening your legs and keeping your back straight."
+      ],
+      "muscleGroups": ["Legs", "Back"]
+    },
+    {
+      "name": "Kettlebell Snatches",
+      "description": "A high-intensity exercise involving swinging a kettlebell overhead.",
+      "steps": [
+        "Hold a kettlebell with one hand.",
+        "Swing it up and over your head.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Full Body"]
+    },
+    {
+      "name": "Lateral Raises",
+      "description": "A shoulder exercise involving raising dumbbells to the side.",
+      "steps": [
+        "Hold dumbbells in each hand.",
+        "Raise them outward to the side.",
+        "Lower them back down."
+      ],
+      "muscleGroups": ["Shoulders"]
+    },
+    {
+      "name": "Leg Press",
+      "description": "A lower body exercise using a leg press machine.",
+      "steps": [
+        "Sit on a leg press machine.",
+        "Place your feet on the platform.",
+        "Push to extend your legs and then return to the starting position."
+      ],
+      "muscleGroups": ["Legs", "Glutes"]
+    },
+    {
+      "name": "Leg Curls",
+      "description": "A leg exercise targeting the hamstrings with a machine.",
+      "steps": [
+        "Lie on a leg curl machine with your ankles under the pad.",
+        "Curl the pad towards your glutes.",
+        "Lower it back down."
+      ],
+      "muscleGroups": ["Hamstrings"]
+    },
+    {
+      "name": "Lying Leg Raises",
+      "description": "A core exercise involving raising the legs while lying down.",
+      "steps": [
+        "Lie on your back with legs extended.",
+        "Raise your legs towards the ceiling.",
+        "Lower them back down."
+      ],
+      "muscleGroups": ["Core", "Legs"]
+    },
+    {
+      "name": "Lat Pulldowns",
+      "description": "A back exercise using a lat pulldown machine.",
+      "steps": [
+        "Sit on a lat pulldown machine with the bar overhead.",
+        "Pull the bar down towards your chest.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Back", "Shoulders"]
+    },
+    {
+      "name": "Leg Extensions",
+      "description": "A leg exercise targeting the quadriceps with a machine.",
+      "steps": [
+        "Sit on a leg extension machine with your ankles under the pad.",
+        "Extend your legs forward.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Quadriceps"]
+    },
+    {
+      "name": "Mountain Climbers",
+      "description": "A high-intensity cardio exercise involving alternating leg movements.",
+      "steps": [
+        "Start in a plank position.",
+        "Bring one knee towards your chest and switch legs.",
+        "Maintain a high tempo."
+      ],
+      "muscleGroups": ["Legs", "Core"]
+    },
+    {
+      "name": "Medicine Ball Slams",
+      "description": "An exercise involving slamming a medicine ball into the ground.",
+      "steps": [
+        "Hold a medicine ball overhead.",
+        "Slam it into the ground with force.",
+        "Pick it up and repeat."
+      ],
+      "muscleGroups": ["Full Body"]
+    },
+    {
+      "name": "Mobility Drills",
+      "description": "A series of exercises to improve flexibility and joint mobility.",
+      "steps": [
+        "Perform various stretches and movements to increase mobility.",
+        "Focus on tight or restricted areas.",
+        "Hold each position for a set time."
+      ],
+      "muscleGroups": ["Various"]
+    },
+    {
+      "name": "Muscle-Ups",
+      "description": "A high-intensity exercise combining a pull-up and a dip.",
+      "steps": [
+        "Start with a pull-up.",
+        "Transition into a dip at the top.",
+        "Lower back down and repeat."
+      ],
+      "muscleGroups": ["Back", "Arms"]
+    },
+    {
+      "name": "Neutral Grip Pull-Ups",
+      "description": "A pull-up variation with a neutral grip on the bar.",
+      "steps": [
+        "Grab a pull-up bar with palms facing each other.",
+        "Pull yourself up until your chin is above the bar.",
+        "Lower back down."
+      ],
+      "muscleGroups": ["Back", "Arms"]
+    },
+    {
+      "name": "Nordic Curls",
+      "description": "A hamstring exercise involving lowering and raising the body.",
+      "steps": [
+        "Secure your ankles while kneeling.",
+        "Lower your body towards the ground.",
+        "Return to the upright position."
+      ],
+      "muscleGroups": ["Hamstrings", "Lower Back"]
+    },
+    {
+      "name": "Overhead Press",
+      "description": "A shoulder exercise involving pressing weights overhead.",
+      "steps": [
+        "Hold a barbell or dumbbells at shoulder height.",
+        "Press them overhead and return to the starting position.",
+        "Repeat."
+      ],
+      "muscleGroups": ["Shoulders"]
+    },
+    {
+      "name": "One-Arm Rows",
+      "description": "A back exercise using a dumbbell for single-arm rows.",
+      "steps": [
+        "Bend forward at the hips while holding a dumbbell.",
+        "Pull the dumbbell towards your chest.",
+        "Lower it back down."
+      ],
+      "muscleGroups": ["Back", "Arms"]
+    },
+    {
+      "name": "Oblique Crunches",
+      "description": "A core exercise targeting the oblique muscles.",
+      "steps": [
+        "Lie on your back with knees bent.",
+        "Twist your upper body to engage the obliques.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Obliques", "Core"]
+    },
+    {
+      "name": "Plank Variations",
+      "description": "Various plank exercises to strengthen the core.",
+      "steps": [
+        "Perform different plank variations (e.g., side plank, elbow plank).",
+        "Hold each plank for a set time.",
+        "Switch between variations."
+      ],
+      "muscleGroups": ["Core"]
+    },
+    {
+      "name": "Pull-Ups",
+      "description": "An upper body exercise involving pulling yourself up to a bar.",
+      "steps": [
+        "Grab a pull-up bar with palms facing forward.",
+        "Pull yourself up until your chin is above the bar.",
+        "Lower back down."
+      ],
+      "muscleGroups": ["Back", "Arms"]
+    },
+    {
+      "name": "Pistol Squats",
+      "description": "A one-legged squat exercise.",
+      "steps": [
+        "Stand on one leg and extend the other forward.",
+        "Lower into a squat on the standing leg.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Legs"]
+    },
+    {
+      "name": "Push-Ups",
+      "description": "A classic exercise involving lowering and raising the body with arms.",
+      "steps": [
+        "Start in a plank position.",
+        "Lower your body towards the ground.",
+        "Push back up to the starting position."
+      ],
+      "muscleGroups": ["Chest", "Arms"]
+    },
+    {
+      "name": "Power Cleans",
+      "description": "A high-intensity exercise involving lifting a barbell from the ground to the shoulders.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Lift the barbell from the ground to your shoulders.",
+        "Lower it back down."
+      ],
+      "muscleGroups": ["Full Body"]
+    },
+    {
+      "name": "Plyometric Push-Ups",
+      "description": "A push-up variation involving explosive movement.",
+      "steps": [
+        "Start in a push-up position.",
+        "Perform a push-up with enough force to lift off the ground.",
+        "Land softly and repeat."
+      ],
+      "muscleGroups": ["Chest", "Arms"]
+    },
+    {
+      "name": "Prone Rows",
+      "description": "A back exercise involving pulling weights while lying prone.",
+      "steps": [
+        "Lie on a bench in a prone position.",
+        "Pull the weights towards your chest.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Back", "Arms"]
+    },
+    {
+      "name": "Plank Jacks",
+      "description": "A high-intensity exercise involving jumping in a plank position.",
+      "steps": [
+        "Start in a plank position.",
+        "Jump with your feet while in the plank.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Legs", "Core"]
+    },
+    {
+      "name": "Quad Stretches",
+      "description": "A stretching exercise to loosen the quadriceps.",
+      "steps": [
+        "Stand on one leg and grab your opposite ankle.",
+        "Pull your ankle towards your glutes.",
+        "Hold for a set time and switch legs."
+      ],
+      "muscleGroups": ["Quadriceps"]
+    },
+    {
+      "name": "Quadruped Extensions",
+      "description": "A core exercise involving extending one arm and one leg.",
+      "steps": [
+        "Start on your hands and knees.",
+        "Extend one arm and the opposite leg.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Core"]
+    },
+    {
+      "name": "Quadruped Leg Raises",
+      "description": "A lower body exercise involving raising one leg while on hands and knees.",
+      "steps": [
+        "Start on hands and knees.",
+        "Raise one leg towards the ceiling.",
+        "Return to the starting position and switch legs."
+      ],
+      "muscleGroups": ["Glutes"]
+    },
+    {
+      "name": "Reverse Flyes",
+      "description": "A shoulder exercise involving raising dumbbells behind you.",
+      "steps": [
+        "Hold dumbbells in each hand and bend forward at the hips.",
+        "Raise the dumbbells outward and backward.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Shoulders", "Back"]
+    },
+    {
+      "name": "Russian Twists",
+      "description": "A core exercise involving twisting the upper body while sitting.",
+      "steps": [
+        "Sit on the floor with knees bent.",
+        "Twist your upper body to one side.",
+        "Switch to the other side."
+      ],
+      "muscleGroups": ["Core"]
+    },
+    {
+      "name": "Rear Delt Raises",
+      "description": "A shoulder exercise targeting the rear deltoids.",
+      "steps": [
+        "Hold dumbbells in each hand and bend forward at the hips.",
+        "Raise the dumbbells outward behind you.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Shoulders"]
+    },
+    {
+      "name": "Romanian Deadlifts",
+      "description": "A deadlift variation focusing on the hamstrings.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Bend forward at the hips while holding a barbell.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Hamstrings", "Back"]
+    },
+    {
+      "name": "Skater Jumps",
+      "description": "A plyometric exercise involving lateral jumps.",
+      "steps": [
+        "Jump laterally from one foot to the other.",
+        "Land softly and repeat on the opposite side.",
+        "Maintain a high tempo."
+      ],
+      "muscleGroups": ["Legs"]
+    },
+    {
+      "name": "Side Planks",
+      "description": "A plank variation where you hold a side position.",
+      "steps": [
+        "Lie on your side with legs extended.",
+        "Lift your body into a side plank.",
+        "Hold the position for a set time."
+      ],
+      "muscleGroups": ["Core"]
+    },
+    {
+      "name": "Shoulder Shrugs",
+      "description": "An upper body exercise involving shrugging the shoulders with weights.",
+      "steps": [
+        "Hold dumbbells or a barbell in each hand.",
+        "Shrug your shoulders upwards.",
+        "Lower them back down."
+      ],
+      "muscleGroups": ["Shoulders"]
+    },
+    {
+      "name": "Seated Rows",
+      "description": "A back exercise using a rowing machine or cable row.",
+      "steps": [
+        "Sit on a rowing machine or cable row.",
+        "Pull the handle towards your chest.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Back", "Arms"]
+    },
+    {
+      "name": "Split Squats",
+      "description": "A squat variation with one leg forward and one leg back.",
+      "steps": [
+        "Stand with one leg forward and one leg back.",
+        "Lower into a squat on the front leg.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Legs"]
+    },
+    {
+      "name": "Single-Leg Deadlifts",
+      "description": "A deadlift variation involving balancing on one leg.",
+      "steps": [
+        "Stand on one leg while holding weights.",
+        "Bend forward at the hips while lifting the opposite leg.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Legs", "Back"]
+    },
+    {
+      "name": "Standing Calf Raises",
+      "description": "A calf exercise involving raising and lowering the heels.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Raise your heels to stand on your toes.",
+        "Lower back down."
+      ],
+      "muscleGroups": ["Calves"]
+    },
+    {
+      "name": "Side Lunges",
+      "description": "A lower body exercise involving lunging to the side.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Lunge to one side while keeping the opposite leg straight.",
+        "Return to the starting position and switch sides."
+      ],
+      "muscleGroups": ["Legs"]
+    },
+    {
+      "name": "Supermans",
+      "description": "A back exercise involving raising the arms and legs while lying prone.",
+      "steps": [
+        "Lie on your stomach with arms extended forward.",
+        "Lift your arms and legs off the ground.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Back"]
+    },
+    {
+      "name": "Suspension Push-Ups",
+      "description": "A push-up variation using suspension trainers.",
+      "steps": [
+        "Hold onto suspension trainers in a push-up position.",
+        "Lower your body towards the ground.",
+        "Push back up to the starting position."
+      ],
+      "muscleGroups": ["Chest", "Arms"]
+    },
+    {
+      "name": "Spiderman Push-Ups",
+      "description": "A push-up variation involving bringing the knee to the elbow.",
+      "steps": [
+        "Start in a push-up position.",
+        "Lower into a push-up while bringing the knee towards the elbow.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Chest", "Core"]
+    },
+    {
+      "name": "Step-Ups",
+      "description": "A lower body exercise involving stepping onto a platform.",
+      "steps": [
+        "Stand in front of a platform or bench.",
+        "Step onto the platform with one leg.",
+        "Step back down and switch legs."
+      ],
+      "muscleGroups": ["Legs", "Glutes"]
+    },
+    {
+      "name": "Tire Flips",
+      "description": "A full-body exercise involving flipping a large tire.",
+      "steps": [
+        "Stand in front of a large tire.",
+        "Bend down and grab the tire.",
+        "Lift and flip the tire over."
+      ],
+      "muscleGroups": ["Full Body"]
+    },
+    {
+      "name": "Tricep Dips",
+      "description": "An upper body exercise involving lowering and raising the body using parallel bars.",
+      "steps": [
+        "Hold onto parallel bars with arms straight.",
+        "Lower yourself down by bending your elbows.",
+        "Push back up to the starting position."
+      ],
+      "muscleGroups": ["Triceps", "Chest"]
+    },
+    {
+      "name": "Tricep Kickbacks",
+      "description": "An arm exercise targeting the triceps with dumbbells.",
+      "steps": [
+        "Hold dumbbells in each hand and bend forward at the hips.",
+        "Extend the dumbbells backwards to engage the triceps.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Triceps"]
+    },
+    {
+      "name": "Turkish Get-Ups",
+      "description": "A full-body exercise involving getting up with a kettlebell overhead.",
+      "steps": [
+        "Lie on your back while holding a kettlebell overhead.",
+        "Get up while keeping the kettlebell overhead.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Full Body"]
+    },
+    {
+      "name": "Tuck Jumps",
+      "description": "A plyometric exercise involving jumping and tucking the knees.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Jump while tucking your knees to your chest.",
+        "Land softly and repeat."
+      ],
+      "muscleGroups": ["Legs", "Core"]
+    },
+    {
+      "name": "Upward Rows",
+      "description": "An upper body exercise involving pulling weights upward.",
+      "steps": [
+        "Hold a barbell or dumbbells with a close grip.",
+        "Pull the weights upwards towards your chin.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Shoulders", "Arms"]
+    },
+    {
+      "name": "Upright Rows",
+      "description": "A shoulder exercise involving pulling weights upward.",
+      "steps": [
+        "Hold dumbbells or a barbell with a close grip.",
+        "Pull the weights upwards towards your chin.",
+        "Lower them back down."
+      ],
+      "muscleGroups": ["Shoulders", "Arms"]
+    },
+    {
+      "name": "Underhand Pull-Ups",
+      "description": "A pull-up variation with an underhand grip.",
+      "steps": [
+        "Grab a pull-up bar with palms facing you.",
+        "Pull yourself up until your chin is above the bar.",
+        "Lower back down."
+      ],
+      "muscleGroups": ["Back", "Arms"]
+    },
+    {
+      "name": "Upper Body Rotation",
+      "description": "An exercise involving rotating the upper body while holding weights.",
+      "steps": [
+        "Hold a weight or a resistance band.",
+        "Rotate your upper body to one side.",
+        "Switch to the other side."
+      ],
+      "muscleGroups": ["Core"]
+    },
+    {
+      "name": "V-Ups",
+      "description": "A core exercise involving raising both legs and upper body into a V-shape.",
+      "steps": [
+        "Lie on your back with legs extended.",
+        "Lift your legs and upper body to meet in the middle.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Core"]
+    },
+    {
+      "name": "Vertical Jumps",
+      "description": "A plyometric exercise involving jumping vertically.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Jump as high as possible.",
+        "Land softly and repeat."
+      ],
+      "muscleGroups": ["Legs", "Core"]
+    },
+    {
+      "name": "V-Sits",
+      "description": "A core exercise involving holding a V-shape position.",
+      "steps": [
+        "Sit on the floor with legs extended.",
+        "Lift your legs and upper body into a V-shape.",
+        "Hold the position for a set time."
+      ],
+      "muscleGroups": ["Core"]
+    },
+    {
+      "name": "Walking Lunges",
+      "description": "A lower body exercise involving lunging while walking.",
+      "steps": [
+        "Stand with feet shoulder-width apart.",
+        "Step forward with one leg into a lunge.",
+        "Continue lunging as you walk."
+      ],
+      "muscleGroups": ["Legs", "Glutes"]
+    },
+    {
+      "name": "Wall Sits",
+      "description": "A lower body exercise involving sitting against a wall.",
+      "steps": [
+        "Stand with your back against a wall.",
+        "Lower into a sitting position while keeping your back straight.",
+        "Hold the position for a set time."
+      ],
+      "muscleGroups": ["Legs"]
+    },
+    {
+      "name": "Wide-Grip Pull-Ups",
+      "description": "A pull-up variation with a wide grip on the bar.",
+      "steps": [
+        "Grab a pull-up bar with a wide grip.",
+        "Pull yourself up until your chin is above the bar.",
+        "Lower back down."
+      ],
+      "muscleGroups": ["Back", "Arms"]
+    },
+    {
+      "name": "Windshield Wipers",
+      "description": "A core exercise involving rotating the legs while lying on the back.",
+      "steps": [
+        "Lie on your back with legs extended.",
+        "Rotate your legs to one side while keeping your shoulders on the ground.",
+        "Switch to the other side."
+      ],
+      "muscleGroups": ["Core", "Obliques"]
+    },
+    {
+      "name": "Walking Planks",
+      "description": "A plank variation involving moving from hands to elbows.",
+      "steps": [
+        "Start in a plank position on your elbows.",
+        "Move to a plank position on your hands.",
+        "Return to elbows and repeat."
+      ],
+      "muscleGroups": ["Core"]
+    },
+    {
+      "name": "Yoga Stretches",
+      "description": "Various yoga poses and stretches for flexibility and relaxation.",
+      "steps": [
+        "Perform different yoga poses and stretches.",
+        "Hold each position for a set time.",
+        "Switch between poses."
+      ],
+      "muscleGroups": ["Various"]
+    },
+    {
+      "name": "Y-T-W Raises",
+      "description": "A shoulder exercise involving raising the arms into Y, T, and W shapes.",
+      "steps": [
+        "Lie on your stomach with arms extended.",
+        "Raise your arms into Y, T, and W shapes.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Shoulders"]
+    },
+    {
+      "name": "Yogic Breathing",
+      "description": "A breathing exercise involving deep breaths and relaxation.",
+      "steps": [
+        "Sit in a comfortable position.",
+        "Breathe deeply and slowly.",
+        "Focus on relaxing the body."
+      ],
+      "muscleGroups": ["Breathing"]
+    },
+    {
+      "name": "Zottman Curls",
+      "description": "An arm exercise involving curling weights with a rotating grip.",
+      "steps": [
+        "Hold dumbbells with an underhand grip.",
+        "Curl them towards your shoulders.",
+        "Rotate to an overhand grip and lower back down."
+      ],
+      "muscleGroups": ["Arms", "Biceps"]
+    },
+    {
+      "name": "Zombie Squats",
+      "description": "A squat variation involving extended arms.",
+      "steps": [
+        "Stand with arms extended forward.",
+        "Lower into a squat.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Legs", "Core"]
+    },
+    {
+      "name": "Zercher Squats",
+      "description": "A squat variation where the barbell is held in the crook of the elbows.",
+      "steps": [
+        "Hold a barbell in the crook of your elbows.",
+        "Lower into a squat.",
+        "Return to the starting position."
+      ],
+      "muscleGroups": ["Legs", "Arms"]
+    }
+  ]
+}
