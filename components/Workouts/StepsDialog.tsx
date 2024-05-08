@@ -1,10 +1,11 @@
 import React from "react";
 
-import { useTemporaryStore } from "./utils/store";
 import Dialog from "../Shared/Dialog";
 import Divider from "../Shared/Divider";
 import { Spacer, Text, View } from "../Themed";
+import { useTemporaryStore } from "./utils/store";
 
+import { emptyString } from "@/constants/Misc";
 import { globalStyles } from "@/constants/Styles";
 import { fontSizes, fontWeights, opacity } from "@/constants/Vars";
 
@@ -25,6 +26,10 @@ const StepsDialog = () => {
       </Text>
 
       <Spacer size="md" />
+
+      {dialogData.steps?.length === 0 && (
+        <Text style={{ opacity: opacity.sm }}>{emptyString}</Text>
+      )}
 
       {dialogData?.steps?.map((step, i) => (
         <React.Fragment key={step}>

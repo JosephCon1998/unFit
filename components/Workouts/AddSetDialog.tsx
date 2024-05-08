@@ -1,18 +1,23 @@
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
-import React, { useEffect, useState } from "react";
-import { DeviceEventEmitter, LayoutAnimation } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  TextInput as DefaultTextInput,
+  DeviceEventEmitter,
+  LayoutAnimation,
+} from "react-native";
 import uuid from "react-native-uuid";
 
+import Dialog from "../Shared/Dialog";
+import { Spacer, Text, TextInput, View } from "../Themed";
 import { useUnitOfMeasurements } from "./utils/hooks";
 import { useExercisesStore, useTemporaryStore } from "./utils/store";
 import { Set } from "./utils/types";
-import Dialog from "../Shared/Dialog";
-import { Spacer, Text, TextInput, View } from "../Themed";
 
 import { emptyString } from "@/constants/Misc";
 import { globalStyles } from "@/constants/Styles";
 import { fontSizes, fontWeights, opacity, spacing } from "@/constants/Vars";
-import { wait } from "@/utils";
+import { Haptics, wait } from "@/utils";
+import { ImpactFeedbackStyle } from "expo-haptics";
 
 const REPS_WEIGHT = 0;
 const DISTANCE_TIME = 1;
@@ -36,6 +41,8 @@ const AddSetDialog = () => {
   const { distance, weight } = useUnitOfMeasurements();
   const { addSet } = useExercisesStore();
 
+  const repsRef = useRef<DefaultTextInput>(null);
+
   function createSet(): PartialSet {
     return {
       ...initialSet,
@@ -44,9 +51,28 @@ const AddSetDialog = () => {
     };
   }
 
+  function haptics() {
+    Haptics.impactAsync(ImpactFeedbackStyle.Light).then(() => {
+      wait(250).then(() =>
+        Haptics.impactAsync(ImpactFeedbackStyle.Light).then(() => {
+          wait(250).then(() =>
+            Haptics.impactAsync(ImpactFeedbackStyle.Light).then(() => {
+              wait(250).then(() =>
+                Haptics.impactAsync(ImpactFeedbackStyle.Heavy)
+              );
+            })
+          );
+        })
+      );
+    });
+  }
+
   useEffect(() => {
     if (dialogs.addEntry) {
       setSet(createSet());
+      wait(500).then(() => {
+        repsRef.current?.focus();
+      });
     }
   }, [dialogs.addEntry]);
 
@@ -59,6 +85,7 @@ const AddSetDialog = () => {
         addSet(dialogData.addEntry.id, set);
         updateDialog("addEntry", false);
         wait(1000).then(() => {
+          haptics();
           DeviceEventEmitter.emit("set-added");
         });
       }}
@@ -100,6 +127,7 @@ const AddSetDialog = () => {
         </Text>
         <Spacer />
         <TextInput
+          ref={repsRef}
           selectTextOnFocus
           placeholder="0"
           value={setType === DISTANCE_TIME ? set.distance : set.reps}

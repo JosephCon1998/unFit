@@ -11,3 +11,26 @@ export const useBackgroundShades = () => {
     xl: `${backgroundColor}25`,
   };
 };
+
+import { useMemo } from "react";
+
+export function useSortedArray(array: any[], sortBy: string) {
+  const sortedArray = useMemo(() => {
+    if (!array || !sortBy) return array;
+
+    return [...array].sort((a, b) => {
+      const itemA = a[sortBy].toUpperCase(); // convert to uppercase to ensure case-insensitive comparison
+      const itemB = b[sortBy].toUpperCase(); // convert to uppercase to ensure case-insensitive comparison
+
+      if (itemA < itemB) {
+        return -1;
+      }
+      if (itemA > itemB) {
+        return 1;
+      }
+      return 0;
+    });
+  }, [array, sortBy]);
+
+  return sortedArray;
+}

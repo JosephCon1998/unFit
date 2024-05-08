@@ -119,11 +119,12 @@ const Dialog = ({
           {!options.hideActionButtons && (
             <>
               <Pressable
+                animation="scale-in"
                 style={{
                   padding: spacing.xs,
                   marginTop: spacing.sm,
-                  height: 50,
-                  borderRadius: radii.sm,
+                  height: 60,
+                  borderRadius: radii.md,
                 }}
                 onPress={onSave}
                 variant="tint"

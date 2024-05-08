@@ -4,6 +4,6 @@ export enum UnitOfMeasurement {
 }
 
 export enum LibraryToggleEnum {
-  Exercises = 0,
-  Workouts = 1,
+  Workouts = 0,
+  Exercises = 1,
 }

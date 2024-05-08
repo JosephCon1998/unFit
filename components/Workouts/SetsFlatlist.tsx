@@ -1,7 +1,8 @@
 import { useLocalSearchParams } from "expo-router";
 import React, { useMemo, useRef } from "react";
 import {
-  FlatList,
+  Alert,
+  LayoutAnimation,
   PlatformColor,
   StyleSheet,
   useColorScheme,
@@ -9,10 +10,8 @@ import {
 import SwipeableDefault from "react-native-gesture-handler/Swipeable";
 import Animated from "react-native-reanimated";
 
-import { useUnitOfMeasurements } from "./utils/hooks";
-import { useExercisesStore, useTemporaryStore } from "./utils/store";
-import { Set } from "./utils/types";
 import {
+  FlatList,
   Icon,
   Pressable,
   Spacer,
@@ -22,6 +21,9 @@ import {
   ViewProps,
   useThemeColor,
 } from "../Themed";
+import { useUnitOfMeasurements } from "./utils/hooks";
+import { useExercisesStore, useTemporaryStore } from "./utils/store";
+import { Set } from "./utils/types";
 
 import { globalStyles } from "@/constants/Styles";
 import {
@@ -132,6 +134,7 @@ const LiValue = ({
       >
         <TextInput
           maxLength={5}
+          placeholder="0"
           onChangeText={onChangeText}
           value={value}
           textAlign="right"
@@ -171,9 +174,22 @@ const Li = ({
   const relativeDateCreated = formatDateToNow(dateCreated);
 
   const { updateDialog, updateDialogData } = useTemporaryStore();
+  const { removeEntry } = useExercisesStore();
 
   function onDelete() {
-    alert("Deleted");
+    Alert.alert("Delete set", "Are you sure you want to delete this set?", [
+      {
+        text: "Cancel",
+      },
+      {
+        text: "Delete",
+        style: "destructive",
+        onPress: () => {
+          LayoutAnimation.easeInEaseOut();
+          removeEntry(exerciseId, id);
+        },
+      },
+    ]);
   }
 
   // If any value in reps / weight OR showDT and showRW are both empty
@@ -197,7 +213,10 @@ const Li = ({
           <Pressable
             style={styles.noteButton}
             onPress={() => {
-              updateDialogData("notes", note);
+              updateDialogData("notes", {
+                exerciseId,
+                setId: id,
+              });
               updateDialog("notes", true);
             }}
           >

@@ -1,5 +1,5 @@
+import { Haptics } from "@/utils";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
-import * as Haptics from "expo-haptics";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {

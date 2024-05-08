@@ -5,11 +5,13 @@
 
 import { FontAwesome6 } from "@expo/vector-icons";
 import {
+  FlatList as DefaultFlatList,
   Pressable as DefaultPressable,
   ScrollView as DefaultScrollView,
   Text as DefaultText,
   TextInput as DefaultTextInput,
   View as DefaultView,
+  FlatListProps,
   Platform,
   PressableProps,
   ScrollViewProps,
@@ -35,6 +37,7 @@ import {
   radii,
   spacing,
 } from "@/constants/Vars";
+import React, { forwardRef } from "react";
 
 const AnimatedPressable = Animated.createAnimatedComponent(DefaultPressable);
 
@@ -315,6 +318,15 @@ export function PressableText(props: CustomTextProps & TextProps) {
   );
 }
 
+export const FlatList = React.forwardRef<any, FlatListProps<any>>(
+  (props, ref) => {
+    // Spread all other props to pass them to DefaultFlatList
+    const { ...otherProps } = props;
+
+    return <DefaultFlatList {...otherProps} ref={ref} />;
+  }
+);
+
 export function ScrollView(props: ViewProps & ScrollViewProps) {
   const {
     style,
@@ -384,7 +396,7 @@ export function Icon(
     size?: number;
     color?: string;
     useTintColor?: boolean;
-  },
+  }
 ) {
   const {
     style,
@@ -430,7 +442,7 @@ export function Spacer(
     noFlex?: boolean;
     horizontal?: boolean;
     size?: "xs" | "sm" | "md" | "lg" | "xl";
-  },
+  }
 ) {
   const {
     style,
@@ -456,50 +468,52 @@ export function Spacer(
   );
 }
 
-export function TextInput(
-  props: TextInputProps & ViewProps & { minimal?: boolean },
-) {
-  const { style, minimal = false, ...otherProps } = props;
+export const TextInput = forwardRef(
+  (props: TextInputProps & ViewProps & { minimal?: boolean }, ref) => {
+    const { style, minimal = false, ...otherProps } = props;
 
-  const color = useThemeColor("text");
-  const tint = useThemeColor("tint");
+    const color = useThemeColor("text");
+    const tint = useThemeColor("tint");
 
-  const minimalStyles: ViewStyle = minimal
-    ? {
-        padding: spacing.none,
-        backgroundColor: "transparent",
-        borderWidth: borderWidth.none,
-        height: "auto",
-        width: "auto",
-      }
-    : {};
+    const minimalStyles: ViewStyle = minimal
+      ? {
+          padding: spacing.none,
+          backgroundColor: "transparent",
+          borderWidth: borderWidth.none,
+          height: "auto",
+          width: "auto",
+        }
+      : {};
 
-  return (
-    <DefaultTextInput
-      keyboardType="numeric"
-      textAlign="center"
-      selectionColor={tint}
-      placeholderTextColor={`${color}50`}
-      style={[
-        {
-          textAlignVertical: "top",
-          color,
-          padding: spacing.sm,
-          borderWidth: borderWidth.thin,
-          borderColor: `${color}20`,
-          fontSize: fontSizes.md,
-          backgroundColor: `${color}10`,
-          height: 36,
-          width: 64,
-          borderRadius: radii.md,
-        },
-        minimalStyles,
-        style,
-      ]}
-      {...otherProps}
-    />
-  );
-}
+    return (
+      <DefaultTextInput
+        // @ts-ignore
+        ref={ref}
+        keyboardType="numeric"
+        textAlign="center"
+        selectionColor={tint}
+        placeholderTextColor={`${color}50`}
+        style={[
+          {
+            textAlignVertical: "top",
+            color,
+            padding: spacing.sm,
+            borderWidth: borderWidth.thin,
+            borderColor: `${color}20`,
+            fontSize: fontSizes.md,
+            backgroundColor: `${color}10`,
+            height: 36,
+            width: 64,
+            borderRadius: radii.md,
+          },
+          minimalStyles,
+          style,
+        ]}
+        {...otherProps}
+      />
+    );
+  }
+);
 
 interface ThemedPressable {
   variant?: "default" | "tint" | "neutral" | "border" | "ghost";

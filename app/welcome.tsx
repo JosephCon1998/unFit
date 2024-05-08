@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 
 import Divider from "@/components/Shared/Divider";
@@ -11,6 +11,7 @@ import {
   Text,
   View,
 } from "@/components/Themed";
+import { usePersistedStore } from "@/components/Workouts/utils/store";
 import { globalStyles } from "@/constants/Styles";
 import {
   borderWidth,
@@ -25,6 +26,14 @@ import { useBackgroundShades } from "@/hooks";
 const WelcomeScreen = () => {
   const { navigate } = useRouter();
   const { md: backgroundColor } = useBackgroundShades();
+  const { updateShowWelcomeOnStartup } = usePersistedStore();
+
+  /**
+   * Immediately set flag for never showing this screen again
+   */
+  useEffect(() => {
+    updateShowWelcomeOnStartup(false);
+  }, []);
 
   return (
     <View style={styles.welcome}>

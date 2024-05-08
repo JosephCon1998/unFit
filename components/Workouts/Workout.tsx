@@ -1,10 +1,6 @@
 import { Link } from "expo-router";
 import React, { useEffect, useMemo, useRef } from "react";
-import {
-  Pressable as DefaultPressable,
-  FlatList,
-  StyleSheet,
-} from "react-native";
+import { Pressable as DefaultPressable, StyleSheet } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -13,12 +9,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import {
-  useExercisesStore,
-  useTemporaryStore,
-  useWorkoutsStore,
-} from "./utils/store";
-import { Exercise as ExerciseType } from "./utils/types";
-import {
+  FlatList,
   Icon,
   Pressable,
   Spacer,
@@ -27,6 +18,12 @@ import {
   ViewProps,
   useThemeColor,
 } from "../Themed";
+import {
+  useExercisesStore,
+  useTemporaryStore,
+  useWorkoutsStore,
+} from "./utils/store";
+import { Exercise as ExerciseType } from "./utils/types";
 
 import { globalStyles } from "@/constants/Styles";
 import {
@@ -37,6 +34,7 @@ import {
   radii,
   spacing,
 } from "@/constants/Vars";
+import { useSortedArray } from "@/hooks";
 import { formatNumberWithCommas } from "@/utils";
 
 export const useAddSet = () => {
@@ -159,13 +157,16 @@ const Workout = ({ workoutId }: WorkoutProps) => {
     return filtered;
   }, [rawExercises, workout]);
 
+  const sortedExercises = useSortedArray(exercises, "name");
+
   return (
     <View style={styles.content}>
       <FlatList
         ref={flatlistRef}
         scrollEnabled={false}
+        contentContainerStyle={{ paddingBottom: spacing.xl * 2 }}
         keyExtractor={(d) => d.id}
-        data={exercises}
+        data={sortedExercises}
         renderItem={({ item, index }) => <Li {...item} index={index} />}
         ItemSeparatorComponent={Spacer}
       />

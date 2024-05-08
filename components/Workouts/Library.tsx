@@ -1,4 +1,4 @@
-import * as Haptics from "expo-haptics";
+import { Haptics } from "@/utils";
 import { usePathname, useRouter } from "expo-router";
 import React, { useEffect } from "react";
 import { StyleSheet, useWindowDimensions } from "react-native";

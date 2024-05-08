@@ -7,6 +7,37 @@ import { Exercise, Set, Space, Workout } from "./types";
 
 import Colors from "@/constants/Colors";
 
+// Persisted state
+
+interface PersistedActions {
+  updateShowWelcomeOnStartup: (value: boolean) => void;
+}
+
+interface PersistedData {
+  showWelcomeOnStartup: boolean;
+}
+
+type PersistedState = PersistedData & PersistedActions;
+
+const initialPersistedState: PersistedData = {
+  showWelcomeOnStartup: true,
+};
+
+export const usePersistedStore = create<PersistedState>()(
+  persist(
+    (set, get) => ({
+      ...initialPersistedState,
+      updateShowWelcomeOnStartup(showWelcomeOnStartup) {
+        set({ showWelcomeOnStartup });
+      },
+    }),
+    {
+      name: "persisted-storage",
+      version: 1,
+    }
+  )
+);
+
 // Temporary state
 interface TemporaryActions {
   updateSelected: (key: keyof TemporaryData["selected"], value: string) => void;
@@ -14,7 +45,7 @@ interface TemporaryActions {
   updateDialog: (key: keyof TemporaryData["dialogs"], value: boolean) => void;
   updateDialogData: (
     key: keyof TemporaryData["dialogData"],
-    value: any,
+    value: any
   ) => void;
 }
 
@@ -32,7 +63,10 @@ interface TemporaryData {
     steps: boolean;
   };
   dialogData: {
-    notes: string;
+    notes: {
+      setId: string;
+      exerciseId: string;
+    };
     addEntry: any;
     steps: string[];
   };
@@ -46,7 +80,7 @@ const initialTemporaryState: TemporaryData = {
     workoutId: "",
   },
   toggles: {
-    library: LibraryToggleEnum.Exercises,
+    library: LibraryToggleEnum.Workouts,
   },
   dialogs: {
     addEntry: false,
@@ -54,7 +88,10 @@ const initialTemporaryState: TemporaryData = {
     notes: false,
   },
   dialogData: {
-    notes: "",
+    notes: {
+      exerciseId: "",
+      setId: "",
+    },
     addEntry: null,
     steps: [],
   },
@@ -79,6 +116,9 @@ export const useTemporaryStore = create<TemporaryState>()((set, get) => ({
 // Exercises
 
 interface ExercisesActions {
+  removeExercise: (id: string) => void;
+  removeEntry: (exerciseId: string, setId: string) => void;
+  clearSets: (exerciseId: string) => void;
   updateSet: ({
     exerciseId,
     setId,
@@ -91,6 +131,9 @@ interface ExercisesActions {
     value: string;
   }) => void;
   addSet: (exerciseId: string, set: Partial<Set>) => void;
+  addExercise: (name: string) => void;
+  renameExercise: (id: string, name: string) => void;
+  addExercises: (exercises: Exercise[]) => void;
 }
 
 interface ExercisesData {
@@ -146,10 +189,33 @@ export const useExercisesStore = create<ExercisesState>()(
   persist(
     (set, get) => ({
       ...initialExercisesState,
+      addExercises(e) {
+        const withIds = e.map((i) => ({
+          ...i,
+          id: uuid.v4().toString(),
+          dateAdded: new Date().toISOString(),
+        }));
+        set({ exercises: [...get().exercises, ...withIds] });
+      },
+      addExercise(name) {
+        const exercises: Exercise[] = [
+          ...get().exercises,
+          {
+            name,
+            entries: [],
+            description: "",
+            id: uuid.v4().toString(),
+            muscleGroups: [],
+            steps: [],
+            dateAdded: new Date().toISOString(),
+          },
+        ];
+        set({ exercises });
+      },
       addSet(exerciseId, newSet) {
         const { exercises } = get();
         const index = exercises.findIndex(
-          (exercise) => exercise.id === exerciseId,
+          (exercise) => exercise.id === exerciseId
         );
         if (index === -1) return;
         const updatedExercises = exercises.map((exercise, idx) => {
@@ -167,7 +233,7 @@ export const useExercisesStore = create<ExercisesState>()(
       updateSet({ exerciseId, setId, key, value }) {
         const { exercises } = get();
         const exerciseIndex = exercises.findIndex(
-          (exercise) => exercise.id === exerciseId,
+          (exercise) => exercise.id === exerciseId
         );
         if (exerciseIndex === -1) return;
         const updatedExercises = exercises.map((exercise, idx) => {
@@ -190,18 +256,56 @@ export const useExercisesStore = create<ExercisesState>()(
         });
         set({ exercises: updatedExercises });
       },
+      clearSets(exerciseId) {
+        set({
+          exercises: get().exercises.map((item) => {
+            if (item.id === exerciseId) {
+              return { ...item, entries: [] };
+            } else {
+              return { ...item };
+            }
+          }),
+        });
+      },
+      removeEntry(exerciseId, entryId) {
+        set({
+          exercises: get().exercises.map((item) => {
+            if (item.id === exerciseId) {
+              const entries = item.entries.filter((i) => i.id !== entryId);
+              return { ...item, entries };
+            } else {
+              return { ...item };
+            }
+          }),
+        });
+      },
+      removeExercise(id) {
+        set({ exercises: get().exercises.filter((e) => e.id !== id) });
+      },
+      renameExercise(id, name) {
+        const exercises = get().exercises.map((e) => {
+          if (e.id === id) {
+            return {
+              ...e,
+              name,
+            };
+          }
+          return e;
+        });
+        set({ exercises });
+      },
     }),
     {
       name: "exercises-storage",
       version: 1,
-    },
-  ),
+    }
+  )
 );
 
 // Workouts
 
 interface WorkoutsActions {
-  addWorkout: ({ name, icon }: { name: string; icon: string }) => void;
+  addWorkout: ({ name }: { name: string }) => void;
   deleteWorkout: (id: string) => void;
   updateWorkout: (id: string, partialWorkout: Partial<Workout>) => void;
 }
@@ -235,10 +339,10 @@ export const useWorkoutsStore = create<WorkoutsState>()(
   persist(
     (set, get) => ({
       ...initialWorkoutsState,
-      addWorkout({ name, icon }) {
+      addWorkout({ name }) {
         const w: Workout = {
           name,
-          icon,
+          icon: "",
           dateCreated: new Date().toISOString(),
           exercises: [],
           id: uuid.v4().toString(),
@@ -253,7 +357,7 @@ export const useWorkoutsStore = create<WorkoutsState>()(
       updateWorkout(id, partialWorkout) {
         set({
           workouts: get().workouts.map((workout) =>
-            workout.id === id ? { ...workout, ...partialWorkout } : workout,
+            workout.id === id ? { ...workout, ...partialWorkout } : workout
           ),
         });
       },
@@ -261,8 +365,8 @@ export const useWorkoutsStore = create<WorkoutsState>()(
     {
       name: "workouts-storage",
       version: 1,
-    },
-  ),
+    }
+  )
 );
 
 // Spaces
@@ -272,7 +376,7 @@ interface SpacesActions {
   reorderSpaces: (updatedList: Space[]) => void;
   updateSpace: (
     id: string,
-    updates: Exclude<Partial<Space>, { id: string }>,
+    updates: Exclude<Partial<Space>, { id: string }>
   ) => void;
   deleteSpace: (id: string) => void;
 }
@@ -289,43 +393,43 @@ const initialSpacesStore: SpacesData = {
       id: "Monday",
       name: "Monday",
       color: "#D0A2F7",
-      workoutId: "Chest and abs",
+      workoutId: "",
     },
     {
       id: "Tuesday",
       name: "Tuesday",
       color: "#E8A0BF",
-      workoutId: "Back and forearms",
+      workoutId: "",
     },
     {
       id: "Wednesday",
       name: "Wednesday",
       color: "#94FFD8",
-      workoutId: "Test",
+      workoutId: "",
     },
     {
       id: "Thursday",
       name: "Thursday",
       color: "#A3D8FF",
-      workoutId: "Test",
+      workoutId: "",
     },
     {
       id: "Friday",
       name: "Friday",
       color: "#F1F5A8",
-      workoutId: "Test",
+      workoutId: "",
     },
     {
       id: "Saturday",
       name: "Saturday",
       color: "#FFBE98",
-      workoutId: "Test",
+      workoutId: "",
     },
     {
       id: "Sunday",
       name: "Sunday",
       color: "#A8DF8E",
-      workoutId: "Test",
+      workoutId: "",
     },
   ],
 };
@@ -368,8 +472,8 @@ export const useSpacesStore = create<SpacesState>()(
     {
       name: "spaces-storage",
       version: 1,
-    },
-  ),
+    }
+  )
 );
 
 // Settings
@@ -399,6 +503,32 @@ export const useSettingsStore = create<SettingsState>()(
     {
       name: "settings-storage",
       version: 1,
+    }
+  )
+);
+
+// Add exercise
+
+interface AddExerciseFromListActions {
+  setExercises: (exercises: Exercise[]) => void;
+}
+
+interface AddExerciseFromListData {
+  exercises: Exercise[];
+}
+
+type AddExerciseFromListState = AddExerciseFromListActions &
+  AddExerciseFromListData;
+
+const initialAddExerciseFromListState: AddExerciseFromListData = {
+  exercises: [],
+};
+
+export const useAddExerciseFromListStore = create<AddExerciseFromListState>()(
+  (set) => ({
+    ...initialAddExerciseFromListState,
+    setExercises(exercises) {
+      set({ exercises });
     },
-  ),
+  })
 );

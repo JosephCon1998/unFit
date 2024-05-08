@@ -1,5 +1,9 @@
 import { formatDistanceToNow } from "date-fns";
 
+export * as Haptics from "expo-haptics";
+
+export function noOp() {}
+
 export function darkenHexColor(hex: string, shades = 6) {
   // Ensure the hex color is valid and remove the '#' if present
   if (hex.indexOf("#") === 0) {

@@ -38,8 +38,14 @@ export default function ExerciseScreen() {
       contentInsetAdjustmentBehavior="automatic"
     >
       <View style={styles.header}>
-        <Text style={{ opacity: opacity.md }}>{headerDescription}</Text>
-        <Spacer />
+        {headerDescription.length > 0 && (
+          <>
+            <Text style={{ opacity: opacity.md }}>{headerDescription}</Text>
+          </>
+        )}
+
+        <Spacer size={headerDescription.length === 0 ? "sm" : "lg"} />
+
         <View style={globalStyles.hstack}>
           <Pressable
             onPress={showSteps}
@@ -52,6 +58,7 @@ export default function ExerciseScreen() {
           >
             <PressableText>Steps</PressableText>
           </Pressable>
+
           <Spacer horizontal />
 
           <Pressable

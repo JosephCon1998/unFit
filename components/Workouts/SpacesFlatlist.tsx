@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
 import {
-  FlatList,
   NativeScrollEvent,
   NativeSyntheticEvent,
   StyleSheet,
   useWindowDimensions,
 } from "react-native";
 
+import { FlatList } from "../Themed";
 import Space from "./Space";
 import { useSpacesStore, useTemporaryStore } from "./utils/store";
 

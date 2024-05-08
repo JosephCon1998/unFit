@@ -5,10 +5,18 @@ import { ScrollView } from "react-native";
 
 import Ad from "@/components/Workouts/Ad";
 import SpacesFlatlist from "@/components/Workouts/SpacesFlatlist";
+import {
+  useSpacesStore,
+  useTemporaryStore,
+  useWorkoutsStore,
+} from "@/components/Workouts/utils/store";
 import { wait } from "@/utils";
 
 export default function WorkoutsScreen() {
   const { navigate } = useRouter();
+  const { updateSelected } = useTemporaryStore();
+  const { spaces } = useSpacesStore();
+  const { workouts } = useWorkoutsStore();
 
   useEffect(() => {
     wait(1000).then(() => {
@@ -23,6 +31,13 @@ export default function WorkoutsScreen() {
         console.log("Yay! I have user permission to track data");
       }
     })();
+  }, []);
+
+  useEffect(() => {
+    if (spaces.length > 0 && workouts.length > 0) {
+      updateSelected("spaceId", spaces[0].id);
+      updateSelected("workoutId", workouts[0].id);
+    }
   }, []);
 
   return (

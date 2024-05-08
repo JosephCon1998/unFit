@@ -38,6 +38,7 @@ export default function Layout() {
         name="addExercise"
         options={{
           title: "Add exercise",
+          gestureEnabled: false,
           headerRight: () => <AddExerciseHeaderRight />,
         }}
       />
