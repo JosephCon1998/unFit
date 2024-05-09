@@ -1,5 +1,4 @@
 import { useRouter } from "expo-router";
-import { requestTrackingPermissionsAsync } from "expo-tracking-transparency";
 import { useEffect } from "react";
 import { ScrollView } from "react-native";
 
@@ -26,15 +25,6 @@ export default function WorkoutsScreen() {
         navigate("/welcome");
       });
     }
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      const { status } = await requestTrackingPermissionsAsync();
-      if (status === "granted") {
-        console.log("Yay! I have user permission to track data");
-      }
-    })();
   }, []);
 
   useEffect(() => {

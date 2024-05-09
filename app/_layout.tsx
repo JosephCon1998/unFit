@@ -9,7 +9,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { View } from "react-native";
+import { View, useColorScheme } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { useThemeColor, useThemeSwitch } from "@/components/Themed";
@@ -20,7 +20,6 @@ import HeaderRight from "@/components/Workouts/HeaderRight";
 import Library from "@/components/Workouts/Library";
 import NotesDialog from "@/components/Workouts/NotesDialog";
 import StepsDialog from "@/components/Workouts/StepsDialog";
-import { useColorScheme } from "@/components/useColorScheme";
 import { configureiOSInAppPurchases } from "@/config";
 
 export {

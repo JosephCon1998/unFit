@@ -8,7 +8,7 @@ import {
 import { Icon } from "../Themed";
 import { useAddSet } from "./Workout";
 
-import { exerciseHeaderContextMenuConfig } from "@/constants/ContextMenus";
+import { exerciseHeaderContextMenuConfig } from "@/config/ContextMenus";
 import { Alert } from "react-native";
 import { useExercisesStore } from "./utils/store";
 

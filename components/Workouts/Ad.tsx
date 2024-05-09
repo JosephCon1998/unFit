@@ -21,6 +21,8 @@ import {
   radii,
   spacing,
 } from "@/constants/Vars";
+import { noOp } from "@/utils";
+import { requestTrackingPermissionsAsync } from "expo-tracking-transparency";
 import { usePersistedStore } from "./utils/store";
 
 const testAdUnit = "ca-app-pub-3940256099942544/2247696110";
@@ -47,6 +49,14 @@ const Ad = () => {
     setAdUnitID(unitID);
   };
 
+  async function requestTrackingPermission() {
+    const { status } = await requestTrackingPermissionsAsync();
+    if (status === "granted") {
+      console.log("Tracking permission granted");
+      noOp();
+    }
+  }
+
   useEffect(() => {
     fetchAdUnitID().then(() => {
       // @ts-ignore
@@ -62,7 +72,8 @@ const Ad = () => {
     <NativeAdView
       ref={nativeAdViewRef}
       adUnitID={adUnitID}
-      onAdLoaded={() => {
+      onAdLoaded={async () => {
+        await requestTrackingPermission();
         LayoutAnimation.easeInEaseOut();
         setRender(true);
       }}

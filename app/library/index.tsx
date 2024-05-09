@@ -32,7 +32,7 @@ import {
 import {
   libraryExercisesContextMenuConfig,
   libraryWorkoutsContextMenuConfig,
-} from "@/constants/ContextMenus";
+} from "@/config/ContextMenus";
 
 import { Exercise, Workout } from "@/components/Workouts/utils/types";
 import { emptyString } from "@/constants/Misc";

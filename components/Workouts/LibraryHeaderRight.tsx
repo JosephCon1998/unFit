@@ -16,7 +16,7 @@ import {
 import {
   libraryHeaderRightContextMenuItems_Exercises,
   libraryHeaderRightContextMenuItems_Workouts,
-} from "@/constants/ContextMenus";
+} from "@/config/ContextMenus";
 import { spacing } from "@/constants/Vars";
 import { Alert, LayoutAnimation } from "react-native";
 

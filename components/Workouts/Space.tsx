@@ -6,13 +6,13 @@ import {
   OnPressMenuItemEventObject,
 } from "react-native-ios-context-menu";
 
+import { Icon, Spacer, Text, View } from "../Themed";
 import Workout from "./Workout";
 import { LibraryToggleEnum } from "./utils/enums";
 import { useTemporaryStore, useWorkoutsStore } from "./utils/store";
 import type { Space as SpaceType } from "./utils/types";
-import { Icon, Spacer, Text, View } from "../Themed";
 
-import { workoutsHeaderContextMenuConfig } from "@/constants/ContextMenus";
+import { workoutsHeaderContextMenuConfig } from "@/config/ContextMenus";
 import { emptyString } from "@/constants/Misc";
 import { globalStyles } from "@/constants/Styles";
 import {

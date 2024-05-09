@@ -68,10 +68,9 @@ const SpacesScreen = () => {
   }
 
   async function onReordered(fromIndex: number, toIndex: number) {
-    const copy = [...spaces]; // Don't modify react data in-place
+    const copy = [...spaces];
     const removed = copy.splice(fromIndex, 1);
-
-    copy.splice(toIndex, 0, removed[0]); // Now insert at the new pos
+    copy.splice(toIndex, 0, removed[0]);
     reorderSpaces(copy);
   }
 
