@@ -21,6 +21,8 @@ import Library from "@/components/Workouts/Library";
 import NotesDialog from "@/components/Workouts/NotesDialog";
 import StepsDialog from "@/components/Workouts/StepsDialog";
 import { configureiOSInAppPurchases } from "@/config";
+import { noOp, wait } from "@/utils";
+import { requestTrackingPermissionsAsync } from "expo-tracking-transparency";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -66,12 +68,23 @@ function RootLayoutNav() {
   const backgroundColor = useThemeColor("background");
   const tint = useThemeColor("tint");
 
+  async function requestTrackingPermission() {
+    const { status } = await requestTrackingPermissionsAsync();
+    if (status === "granted") {
+      console.log("Tracking permission granted");
+      noOp();
+    }
+  }
+
   useEffect(() => {
     refresh();
   }, [isDarkMode]);
 
   useEffect(() => {
     configureiOSInAppPurchases();
+    wait(500).then(() => {
+      requestTrackingPermission();
+    });
   }, []);
 
   return (
