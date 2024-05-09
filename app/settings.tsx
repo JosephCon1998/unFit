@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   Alert,
   Pressable as DefaultPressable,
+  LayoutAnimation,
   PlatformColor,
   StyleSheet,
 } from "react-native";
@@ -43,13 +44,14 @@ import {
   spacing,
 } from "@/constants/Vars";
 import { lightenHexColor } from "@/utils";
-import Purchases from "react-native-purchases";
+import Purchases, { PurchasesStoreProduct } from "react-native-purchases";
 
 const ENTITLEMENT_ID = "ad-free";
+const PRODUCT_IDS = ["unfit_remove_ads"];
 
 const RemoveAdsLi = () => {
   // - State for all available package
-  const [packages, setPackages] = useState<any[]>([]);
+  const [packages, setPackages] = useState<PurchasesStoreProduct>();
 
   // - State for displaying an overlay view
   const [isPurchasing, setIsPurchasing] = useState(false);
@@ -77,31 +79,27 @@ const RemoveAdsLi = () => {
     // Get current available packages
     const getPackages = async () => {
       try {
-        const offerings = await Purchases.getOfferings();
-        if (
-          offerings.current !== null &&
-          offerings.current.availablePackages.length !== 0
-        ) {
-          setPackages(offerings.current.availablePackages);
-        }
+        const products = await Purchases.getProducts(PRODUCT_IDS);
+        setPackages(products[0]);
       } catch (e) {
-        // @ts-ignore
-        Alert.alert("Error getting offers", e.message);
+        console.error(e);
       }
     };
     getPackages();
   }, []);
 
   const onSelection = async () => {
+    LayoutAnimation.easeInEaseOut();
     setIsPurchasing(true);
 
     try {
-      const { customerInfo } = await Purchases.purchasePackage(packages[0]);
+      const { customerInfo } = await Purchases.purchaseStoreProduct(packages!);
 
       if (
         typeof customerInfo.entitlements.active[ENTITLEMENT_ID] !== "undefined"
       ) {
         // Unlocked
+        LayoutAnimation.easeInEaseOut();
         updateAdFree(true);
       }
     } catch (e) {
@@ -246,6 +244,7 @@ const Li = ({
   label: string;
 } & ViewProps) => {
   const color = useThemeColor("text");
+
   const { navigate } = useRouter();
 
   function press() {
@@ -331,6 +330,7 @@ export default function SettingsScreen() {
   const restorePurchases = async () => {
     try {
       await Purchases.restorePurchases();
+      Alert.alert("Purchases restored.");
     } catch (e: any) {
       Alert.alert("Error restoring purchases", e);
     }

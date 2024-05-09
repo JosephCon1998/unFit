@@ -1,8 +1,3 @@
-/**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
- */
-
 import { FontAwesome6 } from "@expo/vector-icons";
 import {
   FlatList as DefaultFlatList,

@@ -21,7 +21,7 @@ import {
   radii,
   spacing,
 } from "@/constants/Vars";
-import { noOp } from "@/utils";
+import { noOp, wait } from "@/utils";
 import { requestTrackingPermissionsAsync } from "expo-tracking-transparency";
 import { usePersistedStore } from "./utils/store";
 
@@ -58,13 +58,13 @@ const Ad = () => {
   }
 
   useEffect(() => {
-    fetchAdUnitID().then(() => {
-      // @ts-ignore
-      nativeAdViewRef.current?.loadAd();
+    wait(500).then(() => {
+      fetchAdUnitID().then(() => {
+        // @ts-ignore
+        nativeAdViewRef.current?.loadAd();
+      });
     });
   }, []);
-
-  if (__DEV__) return null;
 
   if (adFree) return null;
 

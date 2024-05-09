@@ -14,6 +14,7 @@ import Colors from "@/constants/Colors";
 interface PersistedActions {
   updateShowWelcomeOnStartup: (value: boolean) => void;
   updateAdFree: (value: boolean) => void;
+  reset: () => void;
 }
 
 interface PersistedData {
@@ -37,6 +38,9 @@ export const usePersistedStore = create<PersistedState>()(
       },
       updateAdFree(adFree) {
         set({ adFree });
+      },
+      reset() {
+        set(initialPersistedState);
       },
     }),
     {
@@ -911,12 +915,14 @@ export const useResetAppData = () => {
   const { reset: resetExercisesStore } = useExercisesStore();
   const { reset: resetSpacesStore } = useSpacesStore();
   const { reset: resetSettingsStore } = useSettingsStore();
+  const { reset: resetPersistedStore } = usePersistedStore();
 
   function run() {
     resetWorkoutStore();
     resetExercisesStore();
     resetSpacesStore();
     resetSettingsStore();
+    resetPersistedStore();
   }
 
   return run;
