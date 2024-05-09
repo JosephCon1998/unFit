@@ -152,7 +152,7 @@ const RemoveAdsLi = () => {
             style={{ paddingVertical: spacing.sm, borderRadius: radii.xl }}
             variant="neutral"
           >
-            <PressableText>$7.25</PressableText>
+            <PressableText>$7.29</PressableText>
           </Pressable>
         )}
       </View>
