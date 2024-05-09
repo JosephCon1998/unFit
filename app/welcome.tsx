@@ -1,4 +1,4 @@
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import React, { useEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 
@@ -71,11 +71,13 @@ const WelcomeScreen = () => {
 
       <Spacer size="lg" noFlex />
 
-      <Pressable variant="border" style={globalStyles.hstack}>
-        <PressableText>Quickstart guide</PressableText>
-        <Spacer horizontal />
-        <Icon name={{ ios: "questionmark.circle", android: "help" }} />
-      </Pressable>
+      <Link href="/quickstart" asChild>
+        <Pressable variant="border" style={globalStyles.hstack}>
+          <PressableText>Quickstart guide</PressableText>
+          <Spacer horizontal />
+          <Icon name={{ ios: "questionmark.circle", android: "help" }} />
+        </Pressable>
+      </Link>
 
       <Spacer />
 

@@ -24,7 +24,9 @@ import { wait } from "@/utils";
 
 export default function Celebration() {
   const animation = useRef(null);
-  const { height } = useWindowDimensions();
+
+  const { height, width } = useWindowDimensions();
+
   const [render, setRender] = useState(false);
 
   const opacity = useSharedValue(0);
@@ -75,6 +77,19 @@ export default function Celebration() {
           }}
           // Find more Lottie files at https://lottiefiles.com/featured
           source={require("../../assets/animations/thumbsup.json")}
+        />
+        <LottieView
+          speed={1}
+          autoPlay
+          resizeMode="cover"
+          style={{
+            position: "absolute",
+            zIndex: zIndex.backSm,
+            width: width,
+            height: height,
+          }}
+          // Find more Lottie files at https://lottiefiles.com/featured
+          source={require("../../assets/animations/confetti.json")}
         />
       </Animated.View>
       <Animated.View style={[animatedStyles, styles.textContainer, { height }]}>

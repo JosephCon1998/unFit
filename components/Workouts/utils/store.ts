@@ -1,6 +1,8 @@
 import uuid from "react-native-uuid";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { LibraryToggleEnum, UnitOfMeasurement } from "./enums";
 import { Exercise, Set, Space, Workout } from "./types";
@@ -11,16 +13,19 @@ import Colors from "@/constants/Colors";
 
 interface PersistedActions {
   updateShowWelcomeOnStartup: (value: boolean) => void;
+  updateAdFree: (value: boolean) => void;
 }
 
 interface PersistedData {
   showWelcomeOnStartup: boolean;
+  adFree: boolean;
 }
 
 type PersistedState = PersistedData & PersistedActions;
 
 const initialPersistedState: PersistedData = {
   showWelcomeOnStartup: true,
+  adFree: false,
 };
 
 export const usePersistedStore = create<PersistedState>()(
@@ -30,9 +35,13 @@ export const usePersistedStore = create<PersistedState>()(
       updateShowWelcomeOnStartup(showWelcomeOnStartup) {
         set({ showWelcomeOnStartup });
       },
+      updateAdFree(adFree) {
+        set({ adFree });
+      },
     }),
     {
       name: "persisted-storage",
+      storage: createJSONStorage(() => AsyncStorage),
       version: 1,
     }
   )
@@ -134,6 +143,7 @@ interface ExercisesActions {
   addExercise: (name: string) => void;
   renameExercise: (id: string, name: string) => void;
   addExercises: (exercises: Exercise[]) => void;
+  reset: () => void;
 }
 
 interface ExercisesData {
@@ -145,41 +155,329 @@ type ExercisesState = ExercisesData & ExercisesActions;
 const initialExercisesState: ExercisesData = {
   exercises: [
     {
-      name: "Air Squats",
+      name: "Barbell Bench Press",
       dateAdded: new Date().toISOString(),
-      description:
-        "A basic squat without weights to engage the legs and glutes.",
+      description: "An exercise targeting the chest using a barbell.",
       steps: [
-        "Stand with feet shoulder-width apart.",
-        "Bend your knees and lower into a squat.",
-        "Return to the starting position.",
+        "Lie back on a flat bench with a barbell.",
+        "Lower the barbell to your chest.",
+        "Press the barbell upwards, extending your arms.",
       ],
-      muscleGroups: ["Legs", "Glutes"],
-      id: "Bicep Curl",
-      entries: [
-        {
-          id: "Test",
-          dateCreated: new Date().toISOString(),
-          reps: "10",
-          weight: "100",
-          distance: "",
-          time: "",
-          note: "",
-        },
-      ],
+      muscleGroups: ["Chest", "Triceps"],
+      id: "Barbell Bench Press",
+      entries: [],
     },
     {
-      id: "Jumping jacks",
-      name: "Alternating Lunges",
+      name: "Incline Dumbbell Press",
+      dateAdded: new Date().toISOString(),
+      description: "A dumbbell chest press on an inclined bench.",
+      steps: [
+        "Sit on an incline bench with a dumbbell in each hand.",
+        "Press the dumbbells upward, extending your arms.",
+        "Lower the dumbbells back to starting position.",
+      ],
+      muscleGroups: ["Chest", "Shoulders"],
+      id: "Incline Dumbbell Press",
+      entries: [],
+    },
+    {
+      name: "Cable Flys",
+      dateAdded: new Date().toISOString(),
+      description: "A chest exercise performed using a cable machine.",
+      steps: [
+        "Stand between two cable stations with the pulleys set to chest height.",
+        "Hold the handles with your arms extended.",
+        "Bring your hands together in front of your chest.",
+      ],
+      muscleGroups: ["Chest"],
+      id: "Cable Flys",
+      entries: [],
+    },
+    {
+      name: "Push-ups",
+      dateAdded: new Date().toISOString(),
+      description: "A bodyweight exercise to strengthen the upper body.",
+      steps: [
+        "Place your hands on the ground shoulder-width apart.",
+        "Lower your body until your chest nearly touches the ground.",
+        "Push your body back up to the starting position.",
+      ],
+      muscleGroups: ["Chest", "Arms", "Core"],
+      id: "Push-ups",
+      entries: [],
+    },
+    {
+      name: "Hanging Leg Raises",
       dateAdded: new Date().toISOString(),
       description:
-        "A lower-body exercise that alternates lunging with each leg.",
+        "A core exercise performed by hanging from a bar and raising legs.",
       steps: [
-        "Stand with feet hip-width apart.",
-        "Step forward with one leg and lower into a lunge.",
-        "Return to the starting position and switch legs.",
+        "Hang from a pull-up bar with your legs straight down.",
+        "Raise your legs to make a 90-degree angle with your torso.",
+        "Lower your legs back to the starting position.",
+      ],
+      muscleGroups: ["Core"],
+      id: "Hanging Leg Raises",
+      entries: [],
+    },
+    {
+      name: "Plank",
+      dateAdded: new Date().toISOString(),
+      description:
+        "A core strengthening exercise that involves maintaining a position similar to a push-up.",
+      steps: [
+        "Position yourself on your forearms and toes.",
+        "Keep your body in a straight line from head to heels.",
+        "Hold this position.",
+      ],
+      muscleGroups: ["Core"],
+      id: "Plank",
+      entries: [],
+    },
+    {
+      name: "Pull-ups",
+      dateAdded: new Date().toISOString(),
+      description:
+        "An upper-body strength exercise performed by pulling oneself up on a bar.",
+      steps: [
+        "Grab the pull-up bar with an overhand grip.",
+        "Pull your body up until your chin is above the bar.",
+        "Lower yourself back to the starting position.",
+      ],
+      muscleGroups: ["Back", "Arms"],
+      id: "Pull-ups",
+      entries: [],
+    },
+    {
+      name: "Barbell Deadlift",
+      dateAdded: new Date().toISOString(),
+      description:
+        "A weight lifting exercise where a loaded barbell is lifted off the ground to the level of the hips, then lowered back to the ground.",
+      steps: [
+        "Stand with your feet hip-width apart, with the barbell over your feet.",
+        "Bend at your hips and knees, grab the bar with both hands.",
+        "Lift the bar by straightening your hips and knees to a full standing position, then lower the bar to the ground.",
+      ],
+      muscleGroups: ["Back", "Legs", "Glutes"],
+      id: "Barbell Deadlift",
+      entries: [],
+    },
+    {
+      name: "Bent Over Rows",
+      dateAdded: new Date().toISOString(),
+      description:
+        "A bodybuilding exercise where the lifter bends over and pulls a weight towards their torso.",
+      steps: [
+        "Bend over at the waist with knees slightly bent while holding a barbell.",
+        "Pull the barbell towards your stomach, keeping your elbows close to your body.",
+        "Extend your arms and lower the barbell back to the starting position.",
+      ],
+      muscleGroups: ["Back", "Biceps"],
+      id: "Bent Over Rows",
+      entries: [],
+    },
+    {
+      name: "Seated Cable Row",
+      dateAdded: new Date().toISOString(),
+      description:
+        "An exercise that targets the back muscles by pulling a weighted handle towards the body while seated.",
+      steps: [
+        "Sit on the machine with your feet on the footrest and knees slightly bent.",
+        "Grab the handle using both hands.",
+        "Pull the handle towards your waist, then slowly let it return to the starting position.",
+      ],
+      muscleGroups: ["Back"],
+      id: "Seated Cable Row",
+      entries: [],
+    },
+    {
+      name: "Wrist Curls",
+      dateAdded: new Date().toISOString(),
+      description: "An exercise targeting the wrist flexors.",
+      steps: [
+        "Sit on a bench and hold a barbell with your palms facing up.",
+        "Rest your forearms on your thighs with your wrists hanging over the edge.",
+        "Curl your wrists upwards and then lower them back down.",
+      ],
+      muscleGroups: ["Forearms"],
+      id: "Wrist Curls",
+      entries: [],
+    },
+    {
+      name: "Reverse Wrist Curls",
+      dateAdded: new Date().toISOString(),
+      description:
+        "An exercise that focuses on the extensor muscles of the forearm.",
+      steps: [
+        "Sit on a bench, hold a barbell with your palms facing down.",
+        "Rest your forearms on your thighs with wrists hanging over the edge.",
+        "Lift your hands up by curling your wrists and then lower them back.",
+      ],
+      muscleGroups: ["Forearms"],
+      id: "Reverse Wrist Curls",
+      entries: [],
+    },
+    {
+      name: "Squats",
+      dateAdded: new Date().toISOString(),
+      description:
+        "A compound exercise targeting the lower body, involving bending the knees and lowering the body into a squat position.",
+      steps: [
+        "Stand with your feet shoulder-width apart.",
+        "Lower your body by bending your knees and pushing your hips back as if sitting in a chair.",
+        "Return to the starting position by pushing through your heels.",
       ],
       muscleGroups: ["Legs", "Glutes"],
+      id: "Squats",
+      entries: [],
+    },
+    {
+      name: "Leg Press",
+      dateAdded: new Date().toISOString(),
+      description:
+        "A weight training exercise in which the individual pushes a weight or resistance away from them using their legs.",
+      steps: [
+        "Sit down on a leg press machine with your back against the pad.",
+        "Place your feet on the sled in front of you at shoulder-width.",
+        "Push the sled away by extending your knees and hips, then return after a brief pause.",
+      ],
+      muscleGroups: ["Legs"],
+      id: "Leg Press",
+      entries: [],
+    },
+    {
+      name: "Lunges",
+      dateAdded: new Date().toISOString(),
+      description:
+        "A single-leg bodyweight exercise that works the legs and improves flexibility.",
+      steps: [
+        "Stand with your feet hip-width apart.",
+        "Step forward with one leg and lower your hips until both knees are bent at about a 90-degree angle.",
+        "Return to the starting position and repeat with the other leg.",
+      ],
+      muscleGroups: ["Legs", "Glutes"],
+      id: "Lunges",
+      entries: [],
+    },
+    {
+      name: "Leg Curls",
+      dateAdded: new Date().toISOString(),
+      description:
+        "An exercise that primarily targets the hamstrings by curling the legs towards the buttocks.",
+      steps: [
+        "Lie face down on a leg curl machine with your ankles under the padded bar.",
+        "Curl your legs up towards your buttocks by contracting your hamstrings.",
+        "Slowly lower the weight back to the starting position.",
+      ],
+      muscleGroups: ["Hamstrings"],
+      id: "Leg Curls",
+      entries: [],
+    },
+    {
+      name: "Calf Raises",
+      dateAdded: new Date().toISOString(),
+      description:
+        "An exercise that targets the calf muscles by raising the heels off the ground.",
+      steps: [
+        "Stand upright and push through the balls of your feet and raise your heel until you are standing on your toes.",
+        "Slowly lower back to the start position.",
+      ],
+      muscleGroups: ["Calves"],
+      id: "Calf Raises",
+      entries: [],
+    },
+    {
+      name: "Back Extensions",
+      dateAdded: new Date().toISOString(),
+      description:
+        "An exercise that strengthens the lower back muscles by extending the spine against resistance.",
+      steps: [
+        "Lie face down on a hyperextension bench, tucking your ankles securely under the footpads.",
+        "Cross your arms over your chest, bend at the waist, and slowly raise your upper body until your body forms a straight line.",
+        "Lower your body back to the initial position.",
+      ],
+      muscleGroups: ["Lower back"],
+      id: "Back Extensions",
+      entries: [],
+    },
+    {
+      name: "Overhead Press",
+      dateAdded: new Date().toISOString(),
+      description:
+        "A compound exercise that targets the shoulders and arms by pressing weights overhead from a standing or seated position.",
+      steps: [
+        "Stand with your feet shoulder-width apart and hold a barbell at shoulder height.",
+        "Press the barbell upwards until your arms are fully extended overhead.",
+        "Lower the barbell back to shoulder height.",
+      ],
+      muscleGroups: ["Shoulders", "Arms"],
+      id: "Overhead Press",
+      entries: [],
+    },
+    {
+      name: "Lateral Raise",
+      dateAdded: new Date().toISOString(),
+      description:
+        "An isolation exercise that targets the shoulder muscles by lifting weights out to the sides.",
+      steps: [
+        "Stand with your feet shoulder-width apart, holding a dumbbell in each hand at your sides.",
+        "Lift the dumbbells out to the sides until they reach shoulder height, then lower them back down.",
+      ],
+      muscleGroups: ["Shoulders"],
+      id: "Lateral Raise",
+      entries: [],
+    },
+    {
+      name: "Front Raise",
+      dateAdded: new Date().toISOString(),
+      description:
+        "An exercise that targets the anterior deltoids by raising weights directly in front of you.",
+      steps: [
+        "Stand with your feet shoulder-width apart, holding a dumbbell in each hand in front of your thighs.",
+        "Raise the dumbbells straight in front of you to shoulder height, then lower them back down.",
+      ],
+      muscleGroups: ["Shoulders"],
+      id: "Front Raise",
+      entries: [],
+    },
+    {
+      name: "Shrugs",
+      dateAdded: new Date().toISOString(),
+      description:
+        "An exercise focusing on the trapezius muscles by shrugging the shoulders to lift weights held at the sides.",
+      steps: [
+        "Stand with your feet shoulder-width apart, holding a dumbbell in each hand at your sides.",
+        "Raise your shoulders as high as you can, then lower them back down.",
+      ],
+      muscleGroups: ["Upper back", "Neck"],
+      id: "Shrugs",
+      entries: [],
+    },
+    {
+      name: "Cable Woodchoppers",
+      dateAdded: new Date().toISOString(),
+      description:
+        "A dynamic exercise that targets the obliques and entire core, mimicking a chopping motion using a cable machine.",
+      steps: [
+        "Stand with your side to the cable machine, feet shoulder-width apart.",
+        "Hold the cable handle with both hands. Start with the handle next to your upper thigh on one side, then pull it diagonally across your body to the opposite shoulder.",
+        "Return to the start position and repeat.",
+      ],
+      muscleGroups: ["Core", "Obliques"],
+      id: "Cable Woodchoppers",
+      entries: [],
+    },
+    {
+      name: "Russian Twists",
+      dateAdded: new Date().toISOString(),
+      description:
+        "A core exercise that involves twisting the torso with weight in hand while sitting on the floor.",
+      steps: [
+        "Sit on the floor with your knees bent and feet flat, leaning slightly backward.",
+        "Hold a weight with both hands in front of your chest, and rotate your torso from side to side.",
+      ],
+      muscleGroups: ["Core", "Obliques"],
+      id: "Russian Twists",
       entries: [],
     },
   ],
@@ -294,10 +592,14 @@ export const useExercisesStore = create<ExercisesState>()(
         });
         set({ exercises });
       },
+      reset() {
+        set(initialExercisesState);
+      },
     }),
     {
       name: "exercises-storage",
       version: 1,
+      storage: createJSONStorage(() => AsyncStorage),
     }
   )
 );
@@ -308,6 +610,7 @@ interface WorkoutsActions {
   addWorkout: ({ name }: { name: string }) => void;
   deleteWorkout: (id: string) => void;
   updateWorkout: (id: string, partialWorkout: Partial<Workout>) => void;
+  reset: () => void;
 }
 
 interface WorkoutsData {
@@ -319,18 +622,74 @@ type WorkoutsState = WorkoutsActions & WorkoutsData;
 const initialWorkoutsState: WorkoutsData = {
   workouts: [
     {
-      name: "Chest and abs",
-      exercises: ["Bicep Curl", "Jumping jacks"],
-      icon: "",
       id: "Chest and abs",
+      name: "Chest and abs",
+      exercises: [
+        "Barbell Bench Press",
+        "Incline Dumbbell Press",
+        "Cable Flys",
+        "Push-ups",
+        "Hanging Leg Raises",
+        "Plank",
+      ],
       dateCreated: new Date().toISOString(),
+      icon: "",
     },
     {
-      name: "Pull ups",
-      exercises: ["Jumping jacks"],
-      icon: "",
       id: "Back and forearms",
+      name: "Back and forearms",
+      exercises: [
+        "Pull-ups",
+        "Barbell Deadlift",
+        "Bent Over Rows",
+        "Seated Cable Row",
+        "Wrist Curls",
+        "Reverse Wrist Curls",
+      ],
       dateCreated: new Date().toISOString(),
+      icon: "",
+    },
+    {
+      id: "Legs and lower back",
+      name: "Legs and lower back",
+      exercises: [
+        "Squats",
+        "Leg Press",
+        "Lunges",
+        "Leg Curls",
+        "Calf Raises",
+        "Back Extensions",
+      ],
+      dateCreated: new Date().toISOString(),
+      icon: "",
+    },
+    {
+      id: "Shoulders and abs",
+      name: "Shoulders and abs",
+      exercises: [
+        "Overhead Press",
+        "Lateral Raise",
+        "Front Raise",
+        "Shrugs",
+        "Cable Woodchoppers",
+        "Russian Twists",
+      ],
+      dateCreated: new Date().toISOString(),
+      icon: "",
+    },
+    {
+      id: "Arms",
+      name: "Arms",
+      exercises: [
+        "Barbell Curl",
+        "Tricep Dip",
+        "Hammer Curl",
+        "Skull Crusher",
+        "Concentration Curl",
+        "Overhead Tricep Extension",
+      ],
+      dateCreated: new Date().toISOString(),
+      icon: "",
     },
   ],
 };
@@ -361,10 +720,14 @@ export const useWorkoutsStore = create<WorkoutsState>()(
           ),
         });
       },
+      reset() {
+        set(initialWorkoutsState);
+      },
     }),
     {
       name: "workouts-storage",
       version: 1,
+      storage: createJSONStorage(() => AsyncStorage),
     }
   )
 );
@@ -379,6 +742,7 @@ interface SpacesActions {
     updates: Exclude<Partial<Space>, { id: string }>
   ) => void;
   deleteSpace: (id: string) => void;
+  reset: () => void;
 }
 
 interface SpacesData {
@@ -393,31 +757,31 @@ const initialSpacesStore: SpacesData = {
       id: "Monday",
       name: "Monday",
       color: "#D0A2F7",
-      workoutId: "",
+      workoutId: "Chest and abs",
     },
     {
       id: "Tuesday",
       name: "Tuesday",
       color: "#E8A0BF",
-      workoutId: "",
+      workoutId: "Back and forearms",
     },
     {
       id: "Wednesday",
       name: "Wednesday",
       color: "#94FFD8",
-      workoutId: "",
+      workoutId: "Legs and lower back",
     },
     {
       id: "Thursday",
       name: "Thursday",
       color: "#A3D8FF",
-      workoutId: "",
+      workoutId: "Shoulders and abs",
     },
     {
       id: "Friday",
       name: "Friday",
       color: "#F1F5A8",
-      workoutId: "",
+      workoutId: "Arms",
     },
     {
       id: "Saturday",
@@ -468,10 +832,14 @@ export const useSpacesStore = create<SpacesState>()(
         const spaces = get().spaces.filter((s) => s.id !== id);
         set({ spaces });
       },
+      reset() {
+        set(initialSpacesStore);
+      },
     }),
     {
       name: "spaces-storage",
       version: 1,
+      storage: createJSONStorage(() => AsyncStorage),
     }
   )
 );
@@ -480,6 +848,7 @@ export const useSpacesStore = create<SpacesState>()(
 
 interface SettingsActions {
   updateUnitOfMeasurement: (unitOfMeasurement: UnitOfMeasurement) => void;
+  reset: () => void;
 }
 
 interface SettingsData {
@@ -494,15 +863,19 @@ const initialSettingsStore: SettingsData = {
 
 export const useSettingsStore = create<SettingsState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       ...initialSettingsStore,
       updateUnitOfMeasurement(unitOfMeasurement) {
         set({ unitOfMeasurement });
+      },
+      reset() {
+        set(initialSettingsStore);
       },
     }),
     {
       name: "settings-storage",
       version: 1,
+      storage: createJSONStorage(() => AsyncStorage),
     }
   )
 );
@@ -532,3 +905,19 @@ export const useAddExerciseFromListStore = create<AddExerciseFromListState>()(
     },
   })
 );
+
+export const useResetAppData = () => {
+  const { reset: resetWorkoutStore } = useWorkoutsStore();
+  const { reset: resetExercisesStore } = useExercisesStore();
+  const { reset: resetSpacesStore } = useSpacesStore();
+  const { reset: resetSettingsStore } = useSettingsStore();
+
+  function run() {
+    resetWorkoutStore();
+    resetExercisesStore();
+    resetSpacesStore();
+    resetSettingsStore();
+  }
+
+  return run;
+};

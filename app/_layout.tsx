@@ -21,6 +21,7 @@ import Library from "@/components/Workouts/Library";
 import NotesDialog from "@/components/Workouts/NotesDialog";
 import StepsDialog from "@/components/Workouts/StepsDialog";
 import { useColorScheme } from "@/components/useColorScheme";
+import { configureiOSInAppPurchases } from "@/config";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -70,6 +71,10 @@ function RootLayoutNav() {
     refresh();
   }, [isDarkMode]);
 
+  useEffect(() => {
+    configureiOSInAppPurchases();
+  }, []);
+
   return (
     <>
       <StatusBar style="auto" />
@@ -109,6 +114,10 @@ function RootLayoutNav() {
                 options={{ headerShown: false, presentation: "modal" }}
               />
               <Stack.Screen name="settings" options={{ title: "Settings" }} />
+              <Stack.Screen
+                name="quickstart"
+                options={{ title: "Quickstart", presentation: "modal" }}
+              />
               <Stack.Screen
                 name="spaces"
                 options={{ title: "Manage spaces" }}

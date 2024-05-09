@@ -6,6 +6,7 @@ import { ScrollView } from "react-native";
 import Ad from "@/components/Workouts/Ad";
 import SpacesFlatlist from "@/components/Workouts/SpacesFlatlist";
 import {
+  usePersistedStore,
   useSpacesStore,
   useTemporaryStore,
   useWorkoutsStore,
@@ -17,11 +18,14 @@ export default function WorkoutsScreen() {
   const { updateSelected } = useTemporaryStore();
   const { spaces } = useSpacesStore();
   const { workouts } = useWorkoutsStore();
+  const { showWelcomeOnStartup } = usePersistedStore();
 
   useEffect(() => {
-    wait(1000).then(() => {
-      navigate("/welcome");
-    });
+    if (showWelcomeOnStartup) {
+      wait(1000).then(() => {
+        navigate("/welcome");
+      });
+    }
   }, []);
 
   useEffect(() => {

@@ -1,8 +1,10 @@
-import { Haptics } from "@/utils";
+import { Haptics, noOp } from "@/utils";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
+  Alert,
   Pressable as DefaultPressable,
   PlatformColor,
   StyleSheet,
@@ -26,7 +28,11 @@ import {
   useThemeColor,
   useThemeSwitch,
 } from "@/components/Themed";
-import { useSettingsStore } from "@/components/Workouts/utils/store";
+import {
+  usePersistedStore,
+  useResetAppData,
+  useSettingsStore,
+} from "@/components/Workouts/utils/store";
 import { globalStyles } from "@/constants/Styles";
 import {
   borderWidth,
@@ -37,42 +43,121 @@ import {
   spacing,
 } from "@/constants/Vars";
 import { lightenHexColor } from "@/utils";
+import Purchases from "react-native-purchases";
+
+const ENTITLEMENT_ID = "ad-free";
 
 const RemoveAdsLi = () => {
+  // - State for all available package
+  const [packages, setPackages] = useState<any[]>([]);
+
+  // - State for displaying an overlay view
+  const [isPurchasing, setIsPurchasing] = useState(false);
+
+  const { updateAdFree, adFree } = usePersistedStore();
+
   const color = "#FF9F0A";
   const backgroundColor = color + "70";
   const borderColor = color;
 
+  async function checkSubscription() {
+    try {
+      const customerInfo = await Purchases.getCustomerInfo();
+      if (
+        typeof customerInfo.entitlements.active[ENTITLEMENT_ID] !== "undefined"
+      ) {
+        updateAdFree(true);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  useEffect(() => {
+    // Get current available packages
+    const getPackages = async () => {
+      try {
+        const offerings = await Purchases.getOfferings();
+        if (
+          offerings.current !== null &&
+          offerings.current.availablePackages.length !== 0
+        ) {
+          setPackages(offerings.current.availablePackages);
+        }
+      } catch (e) {
+        // @ts-ignore
+        Alert.alert("Error getting offers", e.message);
+      }
+    };
+    getPackages();
+  }, []);
+
+  const onSelection = async () => {
+    setIsPurchasing(true);
+
+    try {
+      const { customerInfo } = await Purchases.purchasePackage(packages[0]);
+
+      if (
+        typeof customerInfo.entitlements.active[ENTITLEMENT_ID] !== "undefined"
+      ) {
+        // Unlocked
+        updateAdFree(true);
+      }
+    } catch (e) {
+      // @ts-ignore
+      if (!e.userCancelled) {
+        // @ts-ignore
+        Alert.alert("Error purchasing package", e.message);
+      }
+    } finally {
+      setIsPurchasing(false);
+    }
+  };
+
+  useEffect(() => {
+    checkSubscription();
+  }, []);
+
+  if (adFree) return null;
+
   return (
-    <View
-      style={[
-        globalStyles.hstack,
-        styles.li,
-        {
-          borderRadius: radii.lg,
-          backgroundColor,
-          borderColor,
-          borderWidth: borderWidth.thin,
-        },
-      ]}
-    >
-      <Icon size={iconSize.lg} name="wand.and.stars" />
-      <Spacer size="md" horizontal />
-      <Text
-        style={{
-          fontWeight: fontWeights.bold,
-          fontSize: fontSizes.md,
-        }}
+    <View style={styles.container}>
+      <View
+        style={[
+          globalStyles.hstack,
+          styles.li,
+          {
+            borderRadius: radii.lg,
+            backgroundColor,
+            borderColor,
+            borderWidth: borderWidth.thin,
+          },
+        ]}
       >
-        Remove ads forever
-      </Text>
-      <Spacer />
-      <Pressable
-        style={{ paddingVertical: spacing.sm, borderRadius: radii.xl }}
-        variant="neutral"
-      >
-        <PressableText>$7.25</PressableText>
-      </Pressable>
+        <Icon size={iconSize.lg} name="wand.and.stars" />
+        <Spacer size="md" horizontal />
+        <Text
+          style={{
+            fontWeight: fontWeights.bold,
+            fontSize: fontSizes.md,
+          }}
+        >
+          Remove ads forever
+        </Text>
+        <Spacer />
+        {isPurchasing ? (
+          <ActivityIndicator size="small" color="black" />
+        ) : (
+          <Pressable
+            onPress={onSelection}
+            style={{ paddingVertical: spacing.sm, borderRadius: radii.xl }}
+            variant="neutral"
+          >
+            <PressableText>$7.25</PressableText>
+          </Pressable>
+        )}
+      </View>
     </View>
   );
 };
@@ -242,11 +327,40 @@ const MeasurementUnitsLi = () => {
 };
 
 export default function SettingsScreen() {
+  const resetAppData = useResetAppData();
+  const restorePurchases = async () => {
+    try {
+      await Purchases.restorePurchases();
+    } catch (e: any) {
+      Alert.alert("Error restoring purchases", e);
+    }
+  };
+
+  const showResetAppDataWarning = () => {
+    Alert.alert(
+      "Reset app data",
+      "This will reset all data to what it initially was when you downloaded the app. Are you sure you want to continue?",
+      [
+        {
+          text: "Reset",
+          style: "destructive",
+          onPress: () => {
+            resetAppData();
+            Alert.alert("App data reset");
+          },
+        },
+        {
+          text: "Cancel",
+          style: "cancel",
+          onPress: noOp,
+        },
+      ]
+    );
+  };
+
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <View style={[styles.container]}>
-        <RemoveAdsLi />
-      </View>
+      <RemoveAdsLi />
 
       <View style={[styles.container]}>
         <Li
@@ -254,12 +368,15 @@ export default function SettingsScreen() {
           href="/spaces"
           iconName={{ ios: "folder.fill", android: "folder" }}
         />
-        <Li
-          label="Open quickstart guide"
-          iconName={{ ios: "questionmark.circle", android: "question" }}
-        />
+        <Link href="/quickstart" asChild>
+          <Li
+            label="Open quickstart guide"
+            iconName={{ ios: "questionmark.circle", android: "question" }}
+          />
+        </Link>
         <Li
           lastItem
+          onPress={restorePurchases}
           label="Restore in-app purchases"
           iconName={{ ios: "dollarsign.arrow.circlepath", android: "question" }}
         />
@@ -279,7 +396,8 @@ export default function SettingsScreen() {
         <Li
           lastItem
           dangerous
-          label="Reset app"
+          onPress={showResetAppDataWarning}
+          label="Reset app data"
           iconName={{ ios: "triangle.fill", android: "folder" }}
         />
       </View>

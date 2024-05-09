@@ -11,7 +11,7 @@ import NativeAdView, {
 } from "react-native-admob-native-ads";
 
 import Divider from "../Shared/Divider";
-import { Spacer, View, ViewProps, useThemeColor } from "../Themed";
+import { Spacer, View, useThemeColor } from "../Themed";
 
 import { globalStyles } from "@/constants/Styles";
 import {
@@ -21,11 +21,13 @@ import {
   radii,
   spacing,
 } from "@/constants/Vars";
+import { usePersistedStore } from "./utils/store";
 
 const testAdUnit = "ca-app-pub-3940256099942544/2247696110";
 const realAdUnit = "ca-app-pub-7062726887382498/6867069675";
 
-const Ad = ({ lightColor, darkColor }: ViewProps) => {
+const Ad = () => {
+  const { adFree } = usePersistedStore();
   const nativeAdViewRef = useRef(null);
 
   const [render, setRender] = useState(false);
@@ -53,6 +55,8 @@ const Ad = ({ lightColor, darkColor }: ViewProps) => {
   }, []);
 
   if (__DEV__) return null;
+
+  if (adFree) return null;
 
   return (
     <NativeAdView

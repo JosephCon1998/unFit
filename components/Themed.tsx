@@ -37,7 +37,9 @@ import {
   radii,
   spacing,
 } from "@/constants/Vars";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { forwardRef } from "react";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 const AnimatedPressable = Animated.createAnimatedComponent(DefaultPressable);
 
@@ -58,12 +60,21 @@ const initialThemeStore: ThemeData = {
   tint: "dark_blue",
 };
 
-export const useThemeStore = create<ThemeState>()((set, get) => ({
-  ...initialThemeStore,
-  updateTint(value) {
-    set({ tint: value });
-  },
-}));
+export const useThemeStore = create<ThemeState>()(
+  persist(
+    (set, get) => ({
+      ...initialThemeStore,
+      updateTint(value) {
+        set({ tint: value });
+      },
+    }),
+    {
+      name: "theme-storage",
+      version: 1,
+      storage: createJSONStorage(() => AsyncStorage),
+    }
+  )
+);
 
 export const useThemeSwitch = () => {
   const { updateTint, tint } = useThemeStore();
