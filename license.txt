@@ -1,0 +1,59 @@
+Custom Non-Commercial License
+
+Version 1.0, June 2024
+
+1. Definitions
+
+“License” shall mean this Custom Non-Commercial License.
+
+“Licensor” shall mean Joe Contumelio, the individual or entity that offers the Work under the terms of this License.
+
+“Work” shall mean the software and associated documentation files, including but not limited to code, images, and text, provided under this License.
+
+“You” (or “Your”) shall mean an individual or Legal Entity exercising permissions granted by this License.
+
+“Non-Commercial Use” shall mean any use of the Work that is not primarily intended for or directed towards commercial advantage or monetary compensation.
+
+2. Grant of License
+
+Subject to the terms and conditions of this License, the Licensor hereby grants You a worldwide, royalty-free, non-exclusive, non-transferable license to use, reproduce, distribute, and modify the Work, solely for Non-Commercial Use.
+
+3. Restrictions
+
+3.1 No Commercial Use: You may not use the Work for commercial purposes. If You wish to use the Work for commercial purposes, You must obtain a separate commercial license from the Licensor.
+
+3.2 Attribution: You must give appropriate credit to the Licensor, provide a link to this License, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the Licensor endorses You or Your use of the Work.
+
+3.3 Distribution: You may distribute copies of the Work or modifications thereof, provided that You include a copy of this License and retain all copyright, patent, trademark, and attribution notices that appear in the Work.
+
+3.4 Modifications: If You modify the Work, You must include a prominent notice stating that You have modified the Work, along with a description of the modifications.
+
+3.5 No Sublicensing: You may not sublicense the Work. Any attempt to sublicense the Work is void and shall automatically terminate Your rights under this License.
+
+4. Termination
+
+4.1 Automatic Termination: This License and the rights granted hereunder will terminate automatically upon any breach by You of the terms of this License.
+
+4.2 Termination for Convenience: The Licensor reserves the right to terminate this License at any time by providing written notice to You.
+
+4.3 Effect of Termination: Upon termination of this License, You shall cease all use, distribution, and modification of the Work.
+
+5. Disclaimer of Warranty
+
+THE WORK IS PROVIDED “AS IS,” WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE WORK OR THE USE OR OTHER DEALINGS IN THE WORK.
+
+6. Limitation of Liability
+
+IN NO EVENT SHALL THE LICENSOR BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATING TO THIS LICENSE OR THE USE OF THE WORK, EVEN IF THE LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+7. Governing Law
+
+This License shall be governed by and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of laws principles.
+
+8. Entire Agreement
+
+This License constitutes the entire agreement between the parties with respect to the Work licensed hereunder and supersedes all prior or contemporaneous understandings regarding such subject matter.
+
+Joe Contumelio
+josephcon1998@gmail.com
+June 29th, 2024
