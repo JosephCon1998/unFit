@@ -1,10 +1,10 @@
-Custom Non-Commercial License
+Non-Commercial License
 
 Version 1.0, June 2024
 
 1. Definitions
 
-“License” shall mean this Custom Non-Commercial License.
+“License” shall mean this Non-Commercial License.
 
 “Licensor” shall mean Joe Contumelio, the individual or entity that offers the Work under the terms of this License.
 
@@ -16,19 +16,23 @@ Version 1.0, June 2024
 
 2. Grant of License
 
-Subject to the terms and conditions of this License, the Licensor hereby grants You a worldwide, royalty-free, non-exclusive, non-transferable license to use, reproduce, distribute, and modify the Work, solely for Non-Commercial Use.
+Subject to the terms and conditions of this License, the Licensor hereby grants You a worldwide, royalty-free, non-exclusive, non-transferable license to view, use, reproduce, and modify the Work, solely for Non-Commercial Use and for the purpose of transparency and educational use.
 
 3. Restrictions
 
-3.1 No Commercial Use: You may not use the Work for commercial purposes. If You wish to use the Work for commercial purposes, You must obtain a separate commercial license from the Licensor.
+3.1 No Commercial Use: You may not use the Work for commercial purposes, including but not limited to selling, licensing, or distributing the Work or any derivative works for monetary gain.
 
-3.2 Attribution: You must give appropriate credit to the Licensor, provide a link to this License, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the Licensor endorses You or Your use of the Work.
+3.2 No App Store Distribution: You may not upload the Work, in whole or in part, to any mobile app store (e.g., Apple App Store, Google Play Store) or any other platform for distribution.
 
-3.3 Distribution: You may distribute copies of the Work or modifications thereof, provided that You include a copy of this License and retain all copyright, patent, trademark, and attribution notices that appear in the Work.
+3.3 No Claim of Ownership: You may not claim ownership of the Work or any derivative works. Proper attribution to the Licensor must be maintained in any copies or substantial portions of the Work.
 
-3.4 Modifications: If You modify the Work, You must include a prominent notice stating that You have modified the Work, along with a description of the modifications.
+3.4 Attribution: You must give appropriate credit to the Licensor, provide a link to this License, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the Licensor endorses You or Your use of the Work.
 
-3.5 No Sublicensing: You may not sublicense the Work. Any attempt to sublicense the Work is void and shall automatically terminate Your rights under this License.
+3.5 Distribution: You may distribute copies of the Work or modifications thereof, provided that You include a copy of this License and retain all copyright, patent, trademark, and attribution notices that appear in the Work.
+
+3.6 Modifications: If You modify the Work, You must include a prominent notice stating that You have modified the Work, along with a description of the modifications.
+
+3.7 No Sublicensing: You may not sublicense the Work. Any attempt to sublicense the Work is void and shall automatically terminate Your rights under this License.
 
 4. Termination
 
@@ -48,7 +52,7 @@ IN NO EVENT SHALL THE LICENSOR BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY INDIR
 
 7. Governing Law
 
-This License shall be governed by and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of laws principles.
+This License shall be governed by and construed in accordance with the laws of the United States of America, without regard to its conflict of laws principles.
 
 8. Entire Agreement
 
@@ -56,4 +60,4 @@ This License constitutes the entire agreement between the parties with respect t
 
 Joe Contumelio
 josephcon1998@gmail.com
-June 29th, 2024
+June 29, 2024
