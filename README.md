@@ -40,7 +40,7 @@ pnpm run tests
 
 ## License
 
-This project is licensed under the Non-Commercial License. You may view, use, and modify this code for non-commercial purposes and for transparency and educational use only. You may not use this code for commercial purposes or upload it to any mobile app stores. For full details, see the [LICENSE](/licence.txt) file.
+This project is licensed under the Non-Commercial License. You may view, use, and modify this code for non-commercial purposes and for transparency and educational use only. You may not use this code for commercial purposes or upload it to any mobile app stores. For full details, see the [LICENSE](https://github.com/JosephCon1998/unFit/blob/main/license.txt) file.
 
 ## Author
 
