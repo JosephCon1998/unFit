@@ -14,7 +14,8 @@ const StepsDialog = () => {
 
   return (
     <Dialog
-      height={256}
+      height={284}
+      scrollable
       options={{ hideActionButtons: true }}
       opened={dialogs.steps}
       onClose={() => {
