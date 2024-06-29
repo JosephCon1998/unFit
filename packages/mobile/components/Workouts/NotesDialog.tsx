@@ -25,6 +25,7 @@ const NotesDialog = () => {
   return (
     <Dialog
       height={296}
+      animation="translate"
       options={{ hideActionButtons: true }}
       opened={dialogs.notes}
       onClose={() => {
@@ -38,6 +39,7 @@ const NotesDialog = () => {
       <Spacer size="md" />
 
       <TextInput
+        autoFocus
         keyboardType="ascii-capable"
         onChangeText={(text) =>
           updateSet({

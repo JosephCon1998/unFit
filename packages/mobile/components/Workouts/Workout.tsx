@@ -2,7 +2,6 @@ import { Link } from "expo-router";
 import React, { useEffect, useMemo, useRef } from "react";
 import { Pressable as DefaultPressable, StyleSheet } from "react-native";
 import Animated, {
-  Easing,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -35,14 +34,25 @@ import {
   spacing,
 } from "@/constants/Vars";
 import { useSortedArray } from "@/hooks";
-import { formatNumberWithCommas } from "@/utils";
+import { Haptics, formatNumberWithCommas } from "@/utils";
+import { useSetAtom } from "jotai";
+import { selectedExerciseAtom } from "./utils/atoms";
 
 export const useAddSet = () => {
   const { updateDialog, updateDialogData } = useTemporaryStore();
+  const setSelectedExercise = useSetAtom(selectedExerciseAtom);
 
-  function run(name: string, id: string) {
-    updateDialogData("addEntry", { name, id });
-    updateDialog("addEntry", true);
+  function run(exercise: ExerciseType, select: boolean) {
+    Haptics.selectionAsync();
+    if (select) {
+      setSelectedExercise(exercise);
+    } else {
+      setSelectedExercise(null);
+    }
+    if (exercise) {
+      updateDialogData("addEntry", { name: exercise.name, id: exercise.id });
+      updateDialog("addEntry", true);
+    }
   }
 
   return run;
@@ -51,14 +61,9 @@ export const useAddSet = () => {
 interface LiProps extends ExerciseType {
   index: number;
 }
-const Li = ({
-  index,
-  entries,
-  name,
-  steps,
-  description,
-  id,
-}: ViewProps & LiProps) => {
+const Li = (exercise: ViewProps & LiProps) => {
+  const { index, entries, name, steps, description, id } = exercise;
+
   const color = useThemeColor("tint");
   const borderColor = useThemeColor("border");
 
@@ -69,7 +74,7 @@ const Li = ({
 
   const config = {
     duration: (index + 1) * 1000,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
+    easing: easings.ease,
   };
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -130,7 +135,8 @@ const Li = ({
                 borderRadius: radii.xl,
               }}
               variant="tint"
-              onPress={() => addSet(name, id)}
+              onLongPress={() => addSet(exercise, false)}
+              onPress={() => addSet(exercise, true)}
             >
               <Icon useTintColor name="plus" />
             </Pressable>
@@ -150,6 +156,9 @@ const Workout = ({ workoutId }: WorkoutProps) => {
   const workout = workouts.find((w) => w.id === workoutId);
   const flatlistRef = useRef(null);
 
+  /**
+   * Fetches referenced exercises in workout from store
+   */
   const exercises: ExerciseType[] = useMemo(() => {
     if (!workout?.exercises) return [];
     const idSet = new Set(workout.exercises);

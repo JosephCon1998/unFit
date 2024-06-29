@@ -1,6 +1,6 @@
 export interface Workout {
   name: string;
-  exercises: string[];
+  exercises: string[]; // id references to Exercises
   icon: string;
   id: string;
   dateCreated: string;

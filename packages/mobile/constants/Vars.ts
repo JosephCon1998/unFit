@@ -2,7 +2,7 @@ import { TextStyle } from "react-native";
 import { Easing } from "react-native-reanimated";
 
 export const easings = {
-  ease: Easing.bezier(0.25, 1, 0.5, 1),
+  ease: Easing.bezier(0.34, 1.56, 0.64, 1),
 };
 
 export const zIndex = {

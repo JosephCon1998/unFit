@@ -7,26 +7,23 @@ import {
   useWindowDimensions,
 } from "react-native";
 import Animated, {
+  StyleProps,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
+  withSpring,
   withTiming,
 } from "react-native-reanimated";
 
 import { Pressable, PressableText, ViewProps, useThemeColor } from "../Themed";
 
-import {
-  borderWidth,
-  easings,
-  fontSizes,
-  radii,
-  spacing,
-  zIndex,
-} from "@/constants/Vars";
+import { borderWidth, easings, radii, spacing, zIndex } from "@/constants/Vars";
 
 interface DialogProps {
   opened: boolean;
-  height?: number;
+  height?: StyleProps["height"];
+  scrollable?: boolean;
+  animation?: "default" | "translate";
   options?: {
     hideActionButtons?: boolean;
   };
@@ -37,7 +34,10 @@ interface DialogProps {
 const Dialog = ({
   children,
   opened,
-  height = 512,
+  height = "auto",
+  scrollable = false,
+  animation = "default",
+  style,
   onClose,
   onSave,
   options = {
@@ -45,7 +45,8 @@ const Dialog = ({
   },
 }: DialogProps & ViewProps) => {
   const opacity = useSharedValue(0);
-  const translateY = useSharedValue(100);
+  const scale = useSharedValue(0.5);
+  const translateY = useSharedValue(0);
   const borderColor = useThemeColor("text");
 
   const [rendered, setRendered] = useState(false);
@@ -59,8 +60,11 @@ const Dialog = ({
 
   const contentAnimatedStyle = useAnimatedStyle(() => ({
     borderColor: `${borderColor}20`,
-    opacity: withTiming(opacity.value, { duration: 500 }),
+    opacity: opacity.value,
     transform: [
+      {
+        scale: scale.value,
+      },
       {
         translateY: translateY.value,
       },
@@ -68,25 +72,26 @@ const Dialog = ({
   }));
 
   const backdropAnimatedStyle = useAnimatedStyle(() => ({
-    opacity: withTiming(opacity.value, { duration: 500 }),
+    opacity: opacity.value,
   }));
 
   useEffect(() => {
     if (opened) {
-      opacity.value = 1;
-      translateY.value = withDelay(
-        150,
-        withTiming(0, {
-          duration: 500,
-          easing: easings.ease,
-        })
-      );
+      opacity.value = withTiming(1, { duration: 250 });
+      scale.value = withTiming(1, { easing: easings.ease });
+      if (animation === "translate") {
+        translateY.value = withDelay(500, withSpring(-136));
+      }
     } else {
-      opacity.value = 0;
-      translateY.value = withTiming(100, {
-        duration: 500,
-        easing: easings.ease,
+      opacity.value = withTiming(0, { duration: 250 });
+      scale.value = withTiming(0.5, {
+        duration: 250,
       });
+      if (animation === "translate") {
+        translateY.value = withTiming(0, {
+          duration: 250,
+        });
+      }
     }
   }, [opened]);
 
@@ -112,39 +117,32 @@ const Dialog = ({
           { top: windowHeight / 2 - contentHeight / 2 },
         ]}
       >
-        <BlurView style={[styles.blur, { height }]} tint="systemMaterial">
-          <ScrollView showsVerticalScrollIndicator={false}>
+        <BlurView
+          style={[styles.blur, { height: height }, style]}
+          tint="systemMaterial"
+        >
+          <ScrollView
+            scrollEnabled={scrollable}
+            showsVerticalScrollIndicator={false}
+          >
             {children}
           </ScrollView>
+
           {!options.hideActionButtons && (
             <>
               <Pressable
-                animation="scale-in"
+                animation="opacity"
                 style={{
                   padding: spacing.xs,
-                  marginTop: spacing.sm,
-                  height: 60,
-                  borderRadius: radii.md,
+                  height: 70,
+                  borderRadius: 0,
+                  borderBottomRightRadius: radii.xl,
+                  borderBottomLeftRadius: radii.xl,
                 }}
                 onPress={onSave}
                 variant="tint"
               >
                 <PressableText useTintColor>Save</PressableText>
-              </Pressable>
-
-              <Pressable
-                onPress={onClose}
-                style={{
-                  opacity: 0.5,
-                  marginTop: spacing.md,
-                  padding: spacing.xs,
-                  borderWidth: borderWidth.none,
-                  backgroundColor: "transparent",
-                }}
-              >
-                <PressableText style={{ fontSize: fontSizes.sm, opacity: 0.5 }}>
-                  Cancel
-                </PressableText>
               </Pressable>
             </>
           )}
